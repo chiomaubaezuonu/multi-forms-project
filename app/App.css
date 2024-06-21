@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.sidebar{
+   /* background-image: url("/public/images/bgDesktop.svg");
+   background-position: cover;
+   background-repeat: no-repeat; */
+}
+.ant-form-item-label {
+    color: greenyellow;
+}
+.ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-form-item-label >label{
+    color: #02295A;
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+.ant-input-outlined{
+    width: 100%;
+}
