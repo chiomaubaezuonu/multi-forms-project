@@ -66,7 +66,7 @@ const Plan = () => {
                 <div className="hidden md:flex justify-between mt-[146px]">
                     <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/">Go Back</Link></button>
                     <button className="bg-[#02295A] py-3 px-5 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-                        <Link href="/plan">Next Step</Link>
+                        <Link href="/add-ons">Next Step</Link>
                     </button>
                 </div>
             </div>
