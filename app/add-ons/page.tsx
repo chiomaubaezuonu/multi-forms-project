@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import "../App.css"
 
 const Add_ons = () => {
     return (
@@ -10,29 +11,29 @@ const Add_ons = () => {
                     <p className="text-[#9699AB] text-base">Add-ons help enhance your gaming experience.</p>
                 </div>
                 <div className='grid gap-4'>
-                    <label htmlFor="add-ons">
+                    <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200  rounded  items-center' htmlFor="add-ons">
                         <input type="checkbox" />
                         <div>
-                            <p className='text-primary-100 font-bold'>Online Service</p>
-                            <p className='text-accent-100 text-sm'>Access to multiplayer</p>
+                            <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
+                            <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
                         </div>
-                        <p className='ml-auto text-primary-200'>$1/mo</p>
+                        <p className='ml-auto text-[#473DFF]'>$1/mo</p>
                     </label>
-                    <label htmlFor="storage">
+                    <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" />
                         <div className=''>
                             <p className="font-bold text-primary-100">Larger storage</p>
-                            <p className="text-sm text-accent-100">Extra 1TB of cloud save</p>
+                            <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
                         </div>
-                        <p className="ml-auto text-primary-200"> $2/mo</p>
+                        <p className="ml-auto text-[#473DFF]"> $2/mo</p>
                     </label>
-                    <label htmlFor="add-ons">
+                    <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" />
                         <div>
                             <p className="font-bold text-primary-100">Customizable Profile</p>
-                            <p className="text-sm text-accent-100">Custom theme on your profile</p>
+                            <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
                         </div>
-                        <p className="ml-auto text-primary-200"> $2/mo</p>
+                        <p className="ml-auto text-[#473DFF]"> $2/mo</p>
                     </label>
                 </div>
 
