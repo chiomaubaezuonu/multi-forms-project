@@ -8,14 +8,9 @@
    background-position: cover;
    background-repeat: no-repeat; */
 }
-.ant-form-item-label {
-    color: greenyellow;
-}
-.ant-form-vertical .ant-form-item:not(.ant-form-item-horizontal) .ant-form-item-label >label{
-    color: #02295A;
-    font-size: .875rem;
-    line-height: 1.25rem;
-}
-.ant-input-outlined{
-    width: 100%;
-}
+.ant-switch.ant-switch-checked {
+    background-color: #02295A;
+  }
+  /* .ant-switch.ant-switch-checked .ant-switch-inner{
+    background-color: #02295A;
+  } */
