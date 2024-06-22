@@ -36,9 +36,6 @@ const Add_ons = () => {
                         <p className="ml-auto text-[#473DFF]"> $2/mo</p>
                     </label>
                 </div>
-
-
-
                 <div className="hidden md:flex justify-between mt-[146px]">
                     <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/plan">Go Back</Link></button>
                     <button className="bg-[#02295A] py-3 px-5 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
