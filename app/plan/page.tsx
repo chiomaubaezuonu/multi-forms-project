@@ -10,13 +10,17 @@ import "../App.css"
 
 const Plan = () => {
     const [toggleOn, setToggleOn] = useState(false)
+    const [yearly, setYearly] = useState(false)
 
     const onChange = (checked: boolean) => {
-
-         console.log(`switch to ${checked}`);
         setToggleOn(checked)
+        //  console.log(`switch to ${checked}`);
+        if (toggleOn === false) {
+            setYearly(true)
+        } else {
+            setYearly(false)
+        }
     };
-
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white ">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
@@ -32,8 +36,18 @@ const Plan = () => {
                             <Image width={50} height={50} src="/images/arcade.svg" alt='arcade' />
                         </label>
                         <div className='mt-auto'>
-                            <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
-                            <p className='text-[#9699ab] text-sm'>$9/mo</p>
+                            {yearly ?
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
+                                    <p className='text-sm text-[#9699ab]'>$90/yr</p>
+                                    <p className="text-[02295A] text-sm"> 2 months free </p>
+                                </div>
+                                :
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
+                                    <p className='text-[#9699ab] text-sm'>$9/mo</p>
+                                </div>
+                            }
                         </div>
                     </div>
 
@@ -42,17 +56,37 @@ const Plan = () => {
                             <Image width={50} height={50} src="/images/advanced.svg" alt='arcade' />
                         </label>
                         <div className='mt-auto'>
-                            <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
-                            <p className='text-[#9699ab] text-sm'>$12/mo</p>
+                        {yearly ?
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
+                                    <p className='text-sm text-[#9699ab]'>$120/yr</p>
+                                    <p className="text-[02295A] text-sm"> 2 months free </p>
+                                </div>
+                                :
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
+                                    <p className='text-[#9699ab] text-sm'>$9/mo</p>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className='bg-[#473dff0d] border-[#473dff] text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200'>
-                        <label htmlFor="arcade">
+                        <label htmlFor="pro">
                             <Image width={50} height={50} src="/images/pro.svg" alt='arcade' />
                         </label>
                         <div className='mt-auto'>
-                            <p className='text-[#0229A] font-bold text-lg'>Pro</p>
-                            <p className='text-[#9699ab] text-sm'>$15/mo</p>
+                        {yearly ?
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Pro</p>
+                                    <p className='text-sm text-[#9699ab]'>$150/yr</p>
+                                    <p className="text-[02295A] text-sm"> 2 months free </p>
+                                </div>
+                                :
+                                <div>
+                                    <p className='text-[#0229A] font-bold text-lg'>Pro</p>
+                                    <p className='text-[#9699ab] text-sm'>$15/mo</p>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
