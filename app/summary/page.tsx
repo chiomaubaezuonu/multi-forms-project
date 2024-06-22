@@ -37,7 +37,7 @@ const Summary = () => {
                 <div className="hidden md:flex justify-between mt-[146px]">
                     <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/plan">Go Back</Link></button>
                     <button className="bg-[#473dff] py-3 px-5 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-                        <Link href="/summary">Confirm</Link>
+                        <Link href="/appreciation">Confirm</Link>
                     </button>
                 </div>
             </div>
