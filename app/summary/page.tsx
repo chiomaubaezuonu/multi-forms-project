@@ -12,22 +12,22 @@ const Summary = () => {
                 <div className='bg-[#f0f6ff] grid gap-4 rounded-lg p-5'>
                     <div className='flex justify-between items-center'>
                         <div>
-                            <p className='text-primary-100  font-bold'>Pro (Yearly)</p>
-                            <button className='text-accent-100 underline hover:text-primary-200'>Change</button>
+                            <p className='text-[#02295A] text-base  font-bold'>Pro (Yearly)</p>
+                            <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
-                        <p className='font-bold text-primary-100'>$150/yr</p>
+                        <p className='font-bold text-[#02295A] text-base'>$150/yr</p>
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
                         <div className='flex justify-between items-center'>
-                            <p className='text-accent-100'>Online service</p>
-                            <p className='text-primary-100'>+$10/yr</p>
+                            <p className='text-[#9699AB] text-base'>Online service</p>
+                            <p className='text-[#02295A] text-base'>+$10/yr</p>
                         </div>
                     </div>
                 </div>
 
                 <div className='p-5 flex justify-between items-center'>
-                    <p className='text-accent-100'>Total (per year)</p>
-                    <p className='font-bold'>+$160/yr</p>
+                    <p className='text-[#9699AB] text-base'>Total (per year)</p>
+                    <p className='font-bold text-[#473DFF]'>+$160/yr</p>
                 </div>
 
 
