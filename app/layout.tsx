@@ -18,7 +18,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className=" bg-[#f0f6ff] relative flex min-h-screen flex-col items-center justify-between p-8">
+      <div className="md:hidden bg-[#f0f6ff] relative flex min-h-screen flex-col items-center justify-between p-8">
+          <main className="block p-5 md:rounded md:bg-white md:shadow-lg w-9/12 ">
+            <div className="flex flex-col gap-4 md:flex-row">
+              <Sidebar />
+              {children}
+            </div>
+          </main>
+        </div>
+        <div className="hidden bg-[#f0f6ff] md:flex relative min-h-screen flex-col items-center justify-between p-8">
           <main className="p-5 md:rounded md:bg-white md:shadow-lg w-9/12 ">
             <div className="flex flex-col gap-4 md:flex-row">
               <Sidebar />

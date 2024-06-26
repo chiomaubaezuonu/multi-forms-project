@@ -11,6 +11,9 @@ import "../App.css"
 const Plan = () => {
     const [toggleOn, setToggleOn] = useState(false)
     const [yearly, setYearly] = useState(false)
+    const [border1, setBorder1] = useState(false)
+    const [border2, setBorder2] = useState(false)
+    const [border3, setBorder3] = useState(false)
 
     const onChange = (checked: boolean) => {
         setToggleOn(checked)
@@ -29,7 +32,7 @@ const Plan = () => {
                     <p className="text-[#9699AB] text-base">You have the option of monthly or yearly billing.</p>
                 </div>
                 <div className='grid md:grid-cols-3 gap-4'>
-                    <div className='bg-[#473dff0d] border-[#473dff] text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200'>
+                    <div onClick={() => setBorder1(true)} className={`bg-[#473dff0d]  ${border1 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200`}>
 
                         <label
                             htmlFor="Arcade">
@@ -51,12 +54,15 @@ const Plan = () => {
                         </div>
                     </div>
 
-                    <div className='bg-[#473dff0d] border-[#473dff] text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200'>
+                    <div onClick={() => {
+                        setBorder1(false)
+                        setBorder2(true)
+                    }} className={`bg-[#473dff0d] ${border2 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200`}>
                         <label htmlFor="Advanced">
                             <Image width={50} height={50} src="/images/advanced.svg" alt='arcade' />
                         </label>
                         <div className='mt-auto'>
-                        {yearly ?
+                            {yearly ?
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
                                     <p className='text-sm text-[#9699ab]'>$120/yr</p>
@@ -70,12 +76,17 @@ const Plan = () => {
                             }
                         </div>
                     </div>
-                    <div className='bg-[#473dff0d] border-[#473dff] text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200'>
+                    <div onClick={() => {
+                        setBorder1(false)
+                        setBorder2(false)
+                        setBorder3(true)
+                    }}
+                     className={`bg-[#473dff0d] ${border3 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200`}>
                         <label htmlFor="pro">
                             <Image width={50} height={50} src="/images/pro.svg" alt='arcade' />
                         </label>
                         <div className='mt-auto'>
-                        {yearly ?
+                            {yearly ?
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Pro</p>
                                     <p className='text-sm text-[#9699ab]'>$150/yr</p>
@@ -105,7 +116,7 @@ const Plan = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 
