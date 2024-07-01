@@ -81,7 +81,7 @@ const Plan = () => {
                         setBorder2(false)
                         setBorder3(true)
                     }}
-                     className={`bg-[#473dff0d] ${border3 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200`}>
+                        className={`bg-[#473dff0d] ${border3 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[1px] cursor-pointer flex flex-col py-3 h-[11rem] p-4 gap-3 duration-200`}>
                         <label htmlFor="pro">
                             <Image width={50} height={50} src="/images/pro.svg" alt='arcade' />
                         </label>

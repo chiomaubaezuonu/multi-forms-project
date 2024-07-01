@@ -4,7 +4,7 @@ import "../App.css"
 
 const Add_ons = () => {
     return (
-        <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white ">
+        <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
                 <div>
                     <h1 className="font-bold text-3xl text-[#02295A]">Pick add-ons</h1>
