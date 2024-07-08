@@ -71,13 +71,11 @@ const Sidebar = () => {
           {/* //test out */}
           {
             sideLinks.map((sideLink) => {
-              // const isIdActive = activeLink === sideLink.id
-              // const isPageActive = activePage === sideLink.details
               const isActive = pathname === sideLink.href;
 
               return <div key={sideLink.id}>
                 {/* <Link href='/plan'> */}
-                <div className="flex gap-4 items-center cursor-pointer" onClick={() => { setActiveLink(sideLink.id) }}>
+                <div className="flex gap-4 items-center cursor-pointer">
                   <div className={`${isActive ? 'bg-[#BFE2FD]' : ''} text-[#02295A] py-1 px-[0.628rem] border-[1px] text-sm font-bold rounded-full border-white`}>{sideLink.linkNum}</div>
                   <div className="hidden md:block uppercase text-sm">
                     <p className="font-light text-xs text-[#ADBEFF]">{sideLink.stepNum}</p>

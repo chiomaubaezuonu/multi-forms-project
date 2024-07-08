@@ -20,22 +20,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="bg-[#f0f6ff] relative flex min-h-screen flex-col items-center justify-between px-2 py-8 md:p-8">
           <main className="block p-5 md:rounded md:bg-white md:shadow-lg w-full md:w-9/12 ">
-            <div className="flex flex-col md:items-center gap-4 md:flex-row">
-              {/* <div className="flex justify-center gap-4 py-5 z-5 md:hidden"> */}
+            <div className="flex flex-col md:items-center gap-16 md:flex-row">
               <Sidebar />
               {children}
-              {/* </div> */}
             </div>
           </main>
         </div>
-        {/* <div className="hidden bg-[#f0f6ff] md:flex relative min-h-screen flex-col items-center justify-between p-8">
-          <main className="p-5 md:rounded md:bg-white md:shadow-lg w-9/12 ">
-            <div className="flex flex-col gap-4 md:flex-row">
-              <Sidebar />
-              {children}
-            </div>
-          </main>
-        </div> */}
       </body>
     </html>
   );

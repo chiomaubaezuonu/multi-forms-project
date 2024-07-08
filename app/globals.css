@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media(max-width: 600px) {
+    .rootLayout__children {
+        background-color: purple;
+        position: absolute;
+        top: 40;
+        width: 80%;
+
+    }
+}

@@ -3,17 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-.sidebar{
-   /* background-image: url("/public/images/bgDesktop.svg");
-   background-position: cover;
-   background-repeat: no-repeat; */
-}
-.ant-switch.ant-switch-checked {
-    background-color: #02295A;
-  }
-  /* .ant-switch.ant-switch-checked .ant-switch-inner{
-    background-color: #02295A;
-  } */
+
    .add-ons{
     border: 0.063rem solid #d6e9e6;
     cursor: pointer;
