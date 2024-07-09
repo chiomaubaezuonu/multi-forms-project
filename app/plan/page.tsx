@@ -6,9 +6,12 @@ import { Switch } from 'antd';
 import Link from 'next/link';
 // import "./App.css"
 import "../App.css"
+import { useGlobalContext } from '../Context/store';
 
 
 const Plan = () => {
+
+    const { online, largerStorage, customizable, monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
     const [toggleOn, setToggleOn] = useState(false)
     const [yearly, setYearly] = useState(false)
     const [border1, setBorder1] = useState(false)
@@ -42,13 +45,13 @@ const Plan = () => {
                             {yearly ?
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
-                                    <p className='text-sm text-[#9699ab]'>$90/yr</p>
+                                    <p className='text-sm text-[#9699ab]'>{`$${yearlyArcade}`}</p>
                                     <p className="text-[02295A] text-sm"> 2 months free </p>
                                 </div>
                                 :
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
-                                    <p className='text-[#9699ab] text-sm'>$9/mo</p>
+                                    <p className='text-[#9699ab] text-sm'>{`$${monthlyArcade}/mo`}</p>
                                 </div>
                             }
                         </div>
@@ -65,13 +68,13 @@ const Plan = () => {
                             {yearly ?
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
-                                    <p className='text-sm text-[#9699ab]'>$120/yr</p>
+                                    <p className='text-sm text-[#9699ab]'>{`$${yearlyAdvanced}`}</p>
                                     <p className="text-[02295A] text-sm"> 2 months free </p>
                                 </div>
                                 :
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Advanced</p>
-                                    <p className='text-[#9699ab] text-sm'>$9/mo</p>
+                                    <p className='text-[#9699ab] text-sm'>{`$${monthlyAdvanced}/mo`}</p>
                                 </div>
                             }
                         </div>
@@ -89,13 +92,13 @@ const Plan = () => {
                             {yearly ?
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Pro</p>
-                                    <p className='text-sm text-[#9699ab]'>$150/yr</p>
+                                    <p className='text-sm text-[#9699ab]'>{`$${yearlyPro}`}</p>
                                     <p className="text-[02295A] text-sm"> 2 months free </p>
                                 </div>
                                 :
                                 <div>
                                     <p className='text-[#0229A] font-bold text-lg'>Pro</p>
-                                    <p className='text-[#9699ab] text-sm'>$15/mo</p>
+                                    <p className='text-[#9699ab] text-sm'>{`$${monthlyPro}/mo`}</p>
                                 </div>
                             }
                         </div>
