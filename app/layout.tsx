@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./sidebar/page";
+import { GlobalContextProvider } from "./Context/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="bg-[#f0f6ff] relative flex min-h-screen flex-col items-center justify-between px-2 py-8 md:p-8">
-          <main className="block p-5 md:rounded md:bg-white md:shadow-lg w-full md:w-9/12 ">
+          <main className="block p-5 md:rounded md:bg-white md:shadow-lg w-full md:w-9/12">
             <div className="flex flex-col md:items-center gap-16 md:flex-row">
               <Sidebar />
-              {children}
+              <GlobalContextProvider>
+                {children}
+              </GlobalContextProvider>
             </div>
           </main>
         </div>

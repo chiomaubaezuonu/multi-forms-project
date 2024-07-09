@@ -1,8 +1,15 @@
+"use client"
 import Link from 'next/link'
 import React from 'react'
-import "../App.css"
+import "../App.css";
+import { useGlobalContext } from '../Context/store';
 
 const Add_ons = () => {
+    // let online = 1;
+    // let largerStorage = 2;
+    // let customizable = 2;
+const { online, largerStorage, customizable } = useGlobalContext();
+
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
@@ -17,7 +24,7 @@ const Add_ons = () => {
                             <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
                             <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
                         </div>
-                        <p className='ml-auto text-[#473DFF]'>$1/mo</p>
+                        <p className='ml-auto text-[#473DFF]'>{`$${online}/mo`}</p>
                     </label>
                     <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" />
@@ -25,7 +32,7 @@ const Add_ons = () => {
                             <p className="font-bold text-primary-100">Larger storage</p>
                             <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
                         </div>
-                        <p className="ml-auto text-[#473DFF]"> $2/mo</p>
+                        <p className="ml-auto text-[#473DFF]"> {`$${largerStorage}/mo`}</p>
                     </label>
                     <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" />
@@ -33,7 +40,7 @@ const Add_ons = () => {
                             <p className="font-bold text-primary-100">Customizable Profile</p>
                             <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
                         </div>
-                        <p className="ml-auto text-[#473DFF]"> $2/mo</p>
+                        <p className="ml-auto text-[#473DFF]">{`$${customizable}/mo`}</p>
                     </label>
                 </div>
                 <div className="hidden md:flex justify-between mt-[146px]">
