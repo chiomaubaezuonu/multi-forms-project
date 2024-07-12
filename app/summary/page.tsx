@@ -1,7 +1,11 @@
+"use client"
 import Link from 'next/link'
 import React from 'react'
+import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
+    const { online, largerStorage, customizable, monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">

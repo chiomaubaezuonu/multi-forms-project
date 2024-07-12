@@ -11,7 +11,7 @@ import { useGlobalContext } from '../Context/store';
 
 const Plan = () => {
 
-    const { online, largerStorage, customizable, monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+    const { monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
     const [toggleOn, setToggleOn] = useState(false)
     const [yearly, setYearly] = useState(false)
     const [border1, setBorder1] = useState(false)

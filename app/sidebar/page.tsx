@@ -59,12 +59,10 @@ const Sidebar = () => {
   const [links, setLinks] = useState<Sidebarlinks>()
   const [activePage, setActivepage] = useState()
 
-  //   const router = useRouter();
-  // const currentRoute = router.pathname;
+  
   return (
     <div>
-      <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bgDesktop.svg')] bg-cover w-full md:w-[274px] h-[172px] md:h-[568px] md:rounded-xl">
-        {/* <div className=" flex flex-col absolute bg-red-500 bg-[url('/images/bg-sidebar-mobile.svg')] md:hidden bg-mobile w-full h-[172px] top-10 left-0 bg-cover "> */}
+      <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bgDesktop.svg')] bg-cover w-full md:w-[274px] h-[172px] md:h-[538px] md:rounded-xl">
         <div className="flex justify-center gap-4 py-5 z-5  md:grid md:gap-6 md:p-10">
           {/* <div className="flex justify-center gap-4 py-5 z-5 md:hidden"> */}
 
