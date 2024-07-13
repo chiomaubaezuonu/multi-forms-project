@@ -11,8 +11,44 @@ import { useGlobalContext } from '../Context/store';
 
 const Plan = () => {
 
-    const { monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+    type planData = {
+        image: string,
+        plan: string,
+        monthlyPrice: number,
+        yearlyPrice: number,
+        duration: string
+    }
+
+    const plans = [
+        {
+            image: "/images/arcade.svg",
+            plan: "Arcade",
+            monthlyPrice: 9,
+            yearlyPrice: 90,
+            duration: "2 months free"
+
+        },
+        {
+            image: "/images/advanced.svg",
+            plan: "Advanced",
+            monthlyPrice: 12,
+            yearlyPrice: 120,
+            duration: "2 months free"
+
+        },
+        {
+            image: "/images/pro.svg",
+            plan: "Pro",
+            monthlyPrice: 15,
+            yearlyPrice: 150,
+            duration: "2 months free"
+
+        }
+    ]
+
+    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
     const [toggleOn, setToggleOn] = useState(false)
+    const [monthly, setMonthly] = useState<planData[]>()
     const [yearly, setYearly] = useState(false)
     const [border1, setBorder1] = useState(false)
     const [border2, setBorder2] = useState(false)
@@ -27,6 +63,14 @@ const Plan = () => {
             setYearly(false)
         }
     };
+    const handlePlan = () => {
+        plans.map((plan) => {
+            if (plan.monthlyPrice === 9){
+                setBorder1(true)
+                setMonthlyArcade(true)
+            }
+        })
+    }
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white  absolute top-40 md:top-0 w-80 md:relative ">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
@@ -35,32 +79,33 @@ const Plan = () => {
                     <p className="text-[#9699AB] mt-[0.688rem] text-base">You have the option of monthly or yearly billing.</p>
                 </div>
                 <div className='grid md:grid-cols-3 gap-4'>
-                    <div onClick={() => setBorder1(true)} className={`bg-[#473dff0d]  ${border1 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col h-[5.75rem] py-3 md:h-[11rem] p-4 gap-3 duration-200`}>
-
-                        <label
-                            htmlFor="Arcade">
-                            <Image width={50} height={50} src="/images/arcade.svg" alt='arcade' />
-                        </label>
-                        <div className='mt-auto'>
-                            {yearly ?
-                                <div>
-                                    <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
-                                    <p className='text-sm text-[#9699ab]'>{`$${yearlyArcade}`}</p>
-                                    <p className="text-[02295A] text-sm"> 2 months free </p>
+                    {
+                        plans.map((plan, index) => (
+                            <div key={index} onClick={handlePlan} className={`bg-[#473dff0d]  ${border1 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-2 text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col h-[5.75rem] py-3 md:h-[11rem] p-4 gap-3 duration-200`}>
+                                <Image width={50} height={50} src={plan.image} alt='arcade' />
+                                <p className='text-[#0229A] font-bold text-lg mt-6'>{plan.plan}</p>
+                                <div className='mt-auto'>
+                                    {yearly ?
+                                        <div>
+                                            <p className='text-sm text-[#9699ab]'>{plan.yearlyPrice}</p>
+                                            <p className="text-[02295A] text-sm">{plan.duration}</p>
+                                        </div>
+                                        :
+                                        <div>
+                                            <p className='text-[#9699ab] text-sm'>{plan.monthlyPrice}</p>
+                                        </div>
+                                    }
                                 </div>
-                                :
-                                <div>
-                                    <p className='text-[#0229A] font-bold text-lg'>Arcade</p>
-                                    <p className='text-[#9699ab] text-sm'>{`$${monthlyArcade}/mo`}</p>
-                                </div>
-                            }
-                        </div>
-                    </div>
+                            </div>
+                        ))
+                    }
 
-                    <div onClick={() => {
+                    {/* <div onClick={() => {
                         setBorder1(false)
                         setBorder2(true)
-                    }} className={`bg-[#473dff0d] ${border2 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col py-3 h-[5.75rem] md:h-[11rem] p-4 gap-3 duration-200`}>
+                        setBorder3(false)
+                        setMonthlyAdvanced(true)
+                    }} className={`bg-[#473dff0d] ${border2 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-2 text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col py-3 h-[5.75rem] md:h-[11rem] p-4 gap-3 duration-200`}>
                         <label htmlFor="Advanced">
                             <Image width={50} height={50} src="/images/advanced.svg" alt='arcade' />
                         </label>
@@ -84,7 +129,7 @@ const Plan = () => {
                         setBorder2(false)
                         setBorder3(true)
                     }}
-                        className={`bg-[#473dff0d] ${border3 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col py-3 h-[5.75rem] md:h-[11rem] p-4 gap-3 duration-200`}>
+                        className={`bg-[#473dff0d] ${border3 ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-2 text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col py-3 h-[5.75rem] md:h-[11rem] p-4 gap-3 duration-200`}>
                         <label htmlFor="pro">
                             <Image width={50} height={50} src="/images/pro.svg" alt='arcade' />
                         </label>
@@ -102,7 +147,7 @@ const Plan = () => {
                                 </div>
                             }
                         </div>
-                    </div>
+                    </div>  */}
                 </div>
                 <div className='py-4 x-5 rounded-lg bg-[#F0F6FF] md:col-span-3'>
                     <div className='flex gap-4 items-center justify-center'>

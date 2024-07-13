@@ -5,15 +5,21 @@ interface ContextProps {
     online: boolean,
     largerStorage: boolean,
     customizable: boolean,
-    monthlyArcade: number,
-    monthlyAdvanced: number,
-    monthlyPro: number,
-    yearlyArcade: number,
-    yearlyAdvanced: number,
-    yearlyPro: number,
+    monthlyArcade: boolean,
+    monthlyAdvanced: boolean,
+    monthlyPro: boolean,
+    yearlyArcade: boolean,
+    yearlyAdvanced: boolean,
+    yearlyPro: boolean,
     setOnline: (newOnline: boolean) => void,
     setLargerStorage: (newLargerStorage: boolean) => void,
-    setCustomizable:(newCustomizable: boolean) => void
+    setCustomizable:(newCustomizable: boolean) => void,
+    setMonthlyArcade: (newMonthlyArcade : boolean) => void,
+    setMonthlyAdvanced: (newMonthlyArcade : boolean) => void,
+    setMonthlyPro: (newMonthlyPro : boolean) => void,
+    setYearlyArcade: (newYearlyArcade : boolean) => void,
+    setYearlyAdvanced:(newYearlyAdvanced : boolean) => void,
+    setYearlyPro:(newYearlyPro : boolean) => void,
 
 }
 
@@ -21,54 +27,36 @@ const GlobalContext = createContext<ContextProps>({
     online: false,
     largerStorage: false,
     customizable: false,
-    monthlyArcade: 9,
-    monthlyAdvanced: 9,
-    monthlyPro: 15,
-    yearlyArcade: 90,
-    yearlyAdvanced: 120,
-    yearlyPro: 150,
+    monthlyArcade: false,
+    monthlyAdvanced: false,
+    monthlyPro: false,
+    yearlyArcade: false,
+    yearlyAdvanced: false,
+    yearlyPro: false,
     setOnline: () => { },
     setLargerStorage: () => { },
     setCustomizable: () => { },
+    setMonthlyArcade: () => { },
+    setMonthlyAdvanced: () => { },
+    setMonthlyPro: () => { },
+    setYearlyArcade: () => { },
+    setYearlyAdvanced: () => { },
+    setYearlyPro: () => { },
 })
 
 export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     const [online, setOnline] = useState(false)
     const [largerStorage, setLargerStorage] = useState(false)
     const [customizable, setCustomizable] = useState(false)
-    const [monthlyArcade, setMonthlyArcade] = useState(9)
-    const [monthlyAdvanced, setMonthlyAdvanced] = useState(9)
-    const [monthlyPro, SetMonthlyPro] = useState(15)
-    const [yearlyArcade, setYearlyArcade] = useState(90)
-    const [yearlyAdvanced, setYearlyAdvanced] = useState(120)
-    const [yearlyPro, setYearlyPro] = useState(150)
+    const [monthlyArcade, setMonthlyArcade] = useState(false)
+    const [monthlyAdvanced, setMonthlyAdvanced] = useState(false)
+    const [monthlyPro, setMonthlyPro] = useState(false)
+    const [yearlyArcade, setYearlyArcade] = useState(false)
+    const [yearlyAdvanced, setYearlyAdvanced] = useState(false)
+    const [yearlyPro, setYearlyPro] = useState(false)
 
 
-    // const updateLStorage = (newValue: number) => {
-    //     setLargerStorage(newValue)
-    // }
-    // const updateCustomizable = (newValue: number) => {
-    //     setCustomizable(newValue)
-    // }
-    const updateMoArcade = (newValue: number) => {
-        setMonthlyArcade(newValue)
-    }
-    const updateMoAdvanced = (newValue: number) => {
-        setMonthlyAdvanced(newValue)
-    }
-    const updateMoPro = (newValue: number) => {
-        SetMonthlyPro(newValue)
-    }
-    const updateYrArcade = (newValue: number) => {
-        setYearlyArcade(newValue)
-    }
-    const updateYrAdvanced = (newValue: number) => {
-        setYearlyAdvanced(newValue)
-    }
-    const updateYrPro = (newValue: number) => {
-        setYearlyPro(newValue)
-    }
-
+   
     const contextValue = {
         online,
         largerStorage,
@@ -80,27 +68,18 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
         yearlyAdvanced,
         yearlyPro,
         // ... other values
+        
+        // ... other state setter functions
         setOnline,
         setLargerStorage,
         setCustomizable,
-        // ... other update functionss
-        updateMoArcade,
-        updateMoAdvanced,
-        updateMoPro,
-        updateYrArcade,
-        updateYrAdvanced,
-        updateYrPro
+        setMonthlyArcade, 
+        setMonthlyAdvanced,
+        setMonthlyPro,
+        setYearlyArcade, 
+        setYearlyAdvanced,
+        setYearlyPro
     };
-
-    // let online = 1
-    // let largerStorage = 2;
-    // let customizable = 2;
-    // let monthlyArcade = 9;
-    // let monthlyAdvanced = 9;
-    // let monthlyPro = 15
-    // let yearlyArcade = 90;
-    // let yearlyAdvanced = 120
-    // let yearlyPro = 150
 
     return (
         // <GlobalContext.Provider value={{ online, largerStorage, customizable, monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro }}>

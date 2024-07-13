@@ -4,7 +4,7 @@ import React from 'react'
 import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
-    const { online, largerStorage, customizable, monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
 
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
@@ -19,13 +19,27 @@ const Summary = () => {
                             <p className='text-[#02295A] text-base  font-bold'>Pro (Yearly)</p>
                             <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
-                        <p className='font-bold text-[#02295A] text-base'>$150/yr</p>
+                        <p className='font-bold text-[#02295A] text-base'>${monthlyArcade ? 90 : ""}/yr</p>
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
-                        <div className='flex justify-between items-center'>
-                            <p className='text-[#9699AB] text-base'>Online service</p>
-                            <p className='text-[#02295A] text-base'>+$10/yr</p>
-                        </div>
+                        {online &&
+                            <div className='flex justify-between items-center'>
+                                <p className='text-[#9699AB] text-base'>Online service</p>
+                                <p className='text-[#02295A] text-base'>+${online ? 1 : ""}/yr</p>
+                            </div>
+                        }
+                        {largerStorage &&
+                            <div className='flex justify-between items-center'>
+                                <p className='text-[#9699AB] text-base'>Larger storage</p>
+                                <p className='text-[#02295A] text-base'>+S{largerStorage ? 2 : ""}/mo</p>
+                            </div>
+                        }
+                        {customizable &&
+                            <div className='flex justify-between items-center'>
+                                <p className='text-[#9699AB] text-base'>Customizable</p>
+                                <p className='text-[#02295A] text-base'>+${customizable ? 2 : ""}/yr</p>
+                            </div>
+                        }
                     </div>
                 </div>
 
