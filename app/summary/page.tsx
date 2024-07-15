@@ -16,7 +16,7 @@ const Summary = () => {
                 <div className='bg-[#f0f6ff] grid gap-4 rounded-lg p-5'>
                     <div className='flex justify-between items-center'>
                         <div>
-                            <p className='text-[#02295A] text-base  font-bold'>Pro (Yearly)</p>
+                            <p className='text-[#02295A] text-base  font-bold'>{monthlyArcade ? "Arcade (Monthly)": ""}</p>
                             <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
                         <p className='font-bold text-[#02295A] text-base'>${monthlyArcade ? 90 : ""}/yr</p>
