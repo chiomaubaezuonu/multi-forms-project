@@ -46,10 +46,10 @@ const Plan = () => {
         }
     ]
 
-    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
     const [toggleOn, setToggleOn] = useState(false)
     const [monthly, setMonthly] = useState<planData[]>()
-    const [yearly, setYearly] = useState(false)
+    // const [yearly, setYearly] = useState(false)
     const [border1, setBorder1] = useState(false)
     const [border2, setBorder2] = useState(false)
     const [border3, setBorder3] = useState(false)
@@ -67,7 +67,7 @@ const Plan = () => {
     const handlePlan = (index:number) => {
            setClickedPlan(index)
            if (index === 0){
-            
+
             setMonthlyArcade(true)
            }else if(index === 1){
             setMonthlyAdvanced(true)

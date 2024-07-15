@@ -11,6 +11,8 @@ interface ContextProps {
     yearlyArcade: boolean,
     yearlyAdvanced: boolean,
     yearlyPro: boolean,
+    yearly : boolean,
+    setYearly:(newYearly: boolean) => void,
     setOnline: (newOnline: boolean) => void,
     setLargerStorage: (newLargerStorage: boolean) => void,
     setCustomizable:(newCustomizable: boolean) => void,
@@ -33,6 +35,8 @@ const GlobalContext = createContext<ContextProps>({
     yearlyArcade: false,
     yearlyAdvanced: false,
     yearlyPro: false,
+    yearly: false,
+    setYearly: () => { },
     setOnline: () => { },
     setLargerStorage: () => { },
     setCustomizable: () => { },
@@ -55,6 +59,8 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
     const [yearlyAdvanced, setYearlyAdvanced] = useState(false)
     const [yearlyPro, setYearlyPro] = useState(false)
 
+    const [yearly, setYearly] = useState(false)
+
 
    
     const contextValue = {
@@ -68,8 +74,9 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
         yearlyAdvanced,
         yearlyPro,
         // ... other values
-        
+        yearly,
         // ... other state setter functions
+        setYearly,
         setOnline,
         setLargerStorage,
         setCustomizable,
