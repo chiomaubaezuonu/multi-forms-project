@@ -5,11 +5,13 @@ import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
    
-    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
 
 
-const displayedPrice = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : "" ))
+const displayedMonthyPrice = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : "" ))
+const displayedYearlyPrice = yearlyArcade ? 90: (yearlyAdvanced ? 120: (yearlyPro ? 150 : ""))
 const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : "" ))
+const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced ? "Advanced (Yearly)" : (yearlyPro ? "Pro (Yearly)" : "" ))
 
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
@@ -21,10 +23,10 @@ const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvan
                 <div className='bg-[#f0f6ff] grid gap-4 rounded-lg p-5'>
                     <div className='flex justify-between items-center'>
                         <div>
-                            <p className='text-[#02295A] text-base  font-bold'>{displayedMonthlyTitle}</p>
+                            <p className='text-[#02295A] text-base  font-bold'>{yearly ? displayedYearlyTitle : displayedMonthlyTitle}</p>
                             <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
-                        <p className='font-bold text-[#02295A] text-base'>${displayedPrice}/yr</p>
+                        <p className='font-bold text-[#02295A] text-base'>${yearly? displayedYearlyPrice : displayedMonthyPrice}/yr</p>
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
                         {online &&

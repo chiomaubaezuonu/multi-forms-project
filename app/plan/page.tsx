@@ -46,7 +46,7 @@ const Plan = () => {
         }
     ]
 
-    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
+    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, setYearlyArcade, yearlyAdvanced, setYearlyAdvanced, yearlyPro, setYearlyPro, yearly, setYearly } = useGlobalContext();
     const [toggleOn, setToggleOn] = useState(false)
     const [monthly, setMonthly] = useState<planData[]>()
     // const [yearly, setYearly] = useState(false)
@@ -64,18 +64,36 @@ const Plan = () => {
             setYearly(false)
         }
     };
-    const handlePlan = (index:number) => {
-           setClickedPlan(index)
-           if (index === 0){
-
+    const handlePlan = (index: number) => {
+        setClickedPlan(index)
+        if (index === 0) {
             setMonthlyArcade(true)
-           }else if(index === 1){
+            if(yearly){
+                setYearlyArcade(true)
+            }
+        } else if (index === 1) {
             setMonthlyAdvanced(true)
-           }
-           else{
+            if(yearly){
+                setYearlyAdvanced(true)
+            }
+        }
+        else {
             setMonthlyPro(true)
+            if(yearly){
+                setYearlyPro(true)
+            }
         }
     }
+   
+    // if (yearly && clickedPlan === 0) {
+    //    setYearlyArcade(true)
+    // }
+    // else if (yearly && clickedPlan === 1) {
+    //    setYearlyAdvanced(true)
+    // } else if (yearly && clickedPlan === 2) {
+    //    setYearlyPro(true)
+    // }
+
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white  absolute top-40 md:top-0 w-80 md:relative ">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
@@ -84,7 +102,7 @@ const Plan = () => {
                     <p className="text-[#9699AB] mt-[0.688rem] text-base">You have the option of monthly or yearly billing.</p>
                 </div>
                 <div className='grid md:grid-cols-3 gap-4'>
-                   {
+                    {
                         plans.map((plan, index) => (
                             <div key={index} onClick={() => handlePlan(index)} className={`bg-[#473dff0d]  ${clickedPlan === index ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-[0.0623rem] text-sm rounded-lg w-full border-[0.063] cursor-pointer flex md:flex-col h-[5.75rem] py-3 md:h-[11rem] p-4 gap-3 duration-200`}>
                                 <Image width={50} height={50} src={plan.image} alt='arcade' />
@@ -105,7 +123,7 @@ const Plan = () => {
                         ))
                     }
 
-                 {/*  */}
+                    {/*  */}
                 </div>
                 <div className='py-4 x-5 rounded-lg bg-[#F0F6FF] md:col-span-3'>
                     <div className='flex gap-4 items-center justify-center'>

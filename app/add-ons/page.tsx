@@ -9,7 +9,7 @@ const Add_ons = () => {
     // let largerStorage = 2;
     // let customizable = 2;
 // const { online, largerStorage, customizable } = useGlobalContext();
-const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable } = useGlobalContext();
+const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, yearly, setYearly } = useGlobalContext();
 
 const handleCheckedBox = (e:any) => {
     const checked = e.target.value
@@ -31,7 +31,9 @@ const handleCheckedBox = (e:any) => {
                             <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
                             <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
                         </div>
-                        <p className='ml-auto text-[#473DFF]'>{`$${1}/mo`}</p>
+                        {
+                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${10}/yr`}</p>: <p className='ml-auto text-[#473DFF]'>{`+$${1}/mo`}</p>
+                        }
                     </label>
                     <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" onChange={(changeEvent) => setLargerStorage(changeEvent.target.checked)} checked={largerStorage} value= 'Larger Storage' />
@@ -39,7 +41,9 @@ const handleCheckedBox = (e:any) => {
                             <p className="font-bold text-primary-100">Larger storage</p>
                             <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
                         </div>
-                        <p className="ml-auto text-[#473DFF]"> {`$2/mo`}</p>
+                        {
+                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p>: <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                        }
                     </label>
                     <label className='add-ons flex gap-4 py-3 px-4 text-sm duration-200 rounded items-center' htmlFor="add-ons">
                         <input type="checkbox" onChange={(changeEvent) => setCustomizable(changeEvent.target.checked)} checked={customizable} />
@@ -47,7 +51,9 @@ const handleCheckedBox = (e:any) => {
                             <p className="font-bold text-primary-100">Customizable Profile</p>
                             <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
                         </div>
-                        <p className="ml-auto text-[#473DFF]">{`$2/mo`}</p>
+                        {
+                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p>: <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                        }
                     </label>
                 </div>
                 <div className="hidden md:flex justify-between mt-[146px]">
