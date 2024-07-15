@@ -66,6 +66,15 @@ const Plan = () => {
     };
     const handlePlan = (index:number) => {
            setClickedPlan(index)
+           if (index === 0){
+            
+            setMonthlyArcade(true)
+           }else if(index === 1){
+            setMonthlyAdvanced(true)
+           }
+           else{
+            setMonthlyPro(true)
+        }
     }
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white  absolute top-40 md:top-0 w-80 md:relative ">

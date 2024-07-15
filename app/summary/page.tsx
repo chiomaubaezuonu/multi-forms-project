@@ -1,10 +1,15 @@
 "use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
+   
     const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro } = useGlobalContext();
+
+
+const displayedPrice = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : "" ))
+const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : "" ))
 
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
@@ -16,10 +21,10 @@ const Summary = () => {
                 <div className='bg-[#f0f6ff] grid gap-4 rounded-lg p-5'>
                     <div className='flex justify-between items-center'>
                         <div>
-                            <p className='text-[#02295A] text-base  font-bold'>{monthlyArcade ? "Arcade (Monthly)": ""}</p>
+                            <p className='text-[#02295A] text-base  font-bold'>{displayedMonthlyTitle}</p>
                             <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
-                        <p className='font-bold text-[#02295A] text-base'>${monthlyArcade ? 90 : ""}/yr</p>
+                        <p className='font-bold text-[#02295A] text-base'>${displayedPrice}/yr</p>
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
                         {online &&
