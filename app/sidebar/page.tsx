@@ -63,7 +63,7 @@ const Sidebar = () => {
   return (
     <div>
       <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] mr-4 md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[264px] h-[172px] md:h-[538px] md:rounded-xl">
-        <div className="flex justify-center gap-4 py-5 z-5  md:grid md:gap-6 md:p-10">
+        <div className="flex justify-center gap-4 py-5 relative p-8 pt-12 md:flex-col z-20 md:gap-6">
           {/* <div className="flex justify-center gap-4 py-5 z-5 md:hidden"> */}
 
           {/* //test out */}
@@ -74,10 +74,10 @@ const Sidebar = () => {
               return <div key={sideLink.id}>
                 {/* <Link href='/plan'> */}
                 <div className="flex gap-4 items-center cursor-pointer onClick={handleNavigation(id)}">
-                  <div className={`${isActive ? 'bg-[#BFE2FD]' : ''} text-[#02295A] py-1 px-[0.628rem] border-[1px] text-sm font-bold rounded-full border-white`}>{sideLink.linkNum}</div>
-                  <div className="hidden md:block uppercase text-sm">
-                    <p className="font-light text-xs text-[#ADBEFF]">{sideLink.stepNum}</p>
-                    <p className="tracking-widest text-[#F0F6FF] font-bold">{sideLink.details}</p>
+                  <div className={`${isActive ? 'bg-[#BFE2FD]' : ''} text-[#02295A] py-1 px-[0.628rem] w-8 h-8 flex items-center justify-center border-[1px] text-sm font-bold rounded-full border-gray-100`}>{sideLink.linkNum}</div>
+                  <div className="hidden md:flex flex-col uppercase text-sm">
+                    <p className="font-light text-xs text-[#9699AB]">{sideLink.stepNum}</p>
+                    <p className="text-[#FAFBFF] font-semibold text-sm tracking-wider">{sideLink.details}</p>
                   </div>
                 </div>
                 {/* </Link> */}
