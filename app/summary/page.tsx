@@ -4,15 +4,44 @@ import React, { useEffect } from 'react'
 import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
-   
+
     const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
+    let onlineMonthly = 1;
+    let monthlyLargerStorage = 2;
+    let monthlyCustomizable = 2;
+    let yearlyOnline = 10;
+    let yearlyLargerStorage = 20;
+    let yearlyCustomizable = 20
 
+    const displayedMonthyPrice: number = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : 0))
+    const displayedYearlyPrice: number = yearlyArcade ? 90 : (yearlyAdvanced ? 120 : (yearlyPro ? 150 : 0))
+    const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : ""))
+    const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced ? "Advanced (Yearly)" : (yearlyPro ? "Pro (Yearly)" : ""))
+    const selectedPlanPrice: number = yearly ? displayedYearlyPrice : displayedMonthyPrice
+    const MonthlyServicePrice: number = !yearly && online ? onlineMonthly : (!yearly && largerStorage ? monthlyLargerStorage : (!yearly && customizable ? monthlyCustomizable : 0))
+    const YearlyServicePrice: number = yearly && online ? yearlyOnline : (yearly && largerStorage ? yearlyLargerStorage : (yearly && customizable ? yearlyCustomizable : 0))
+    const totalYearlyServicePrice: number = yearly && online
+        ? yearlyOnline
+        + (largerStorage ? yearlyLargerStorage : 0)
+        + (customizable ? yearlyCustomizable : 0)
+        : 0;
+    const totalMonthlyServicePrice = !yearly && online ? onlineMonthly
+        + (largerStorage ? monthlyLargerStorage : 0)
+        + (customizable ? monthlyCustomizable : 0)
+        : 0
 
-const displayedMonthyPrice = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : "" ))
-const displayedYearlyPrice = yearlyArcade ? 90: (yearlyAdvanced ? 120: (yearlyPro ? 150 : ""))
-const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : "" ))
-const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced ? "Advanced (Yearly)" : (yearlyPro ? "Pro (Yearly)" : "" ))
+    let customerTotalPrice;
+    if (selectedPlanPrice && MonthlyServicePrice) {
+        customerTotalPrice = selectedPlanPrice + MonthlyServicePrice
 
+    } if (selectedPlanPrice && YearlyServicePrice) {
+        customerTotalPrice = selectedPlanPrice + YearlyServicePrice
+    } if (selectedPlanPrice && totalYearlyServicePrice) {
+        customerTotalPrice = selectedPlanPrice + totalYearlyServicePrice
+    }
+    if (selectedPlanPrice && totalMonthlyServicePrice) {
+        customerTotalPrice = selectedPlanPrice + totalMonthlyServicePrice
+    }
     return (
         <div className="rounded-lg shadow-lg md:shadow-none z-10 flex-1 p-5 bg-white">
             <div className="flex flex-col md:shadow-none gap-4 mx-auto h-full md:w-4/5">
@@ -26,25 +55,37 @@ const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced 
                             <p className='text-[#02295A] text-base  font-bold'>{yearly ? displayedYearlyTitle : displayedMonthlyTitle}</p>
                             <button className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'><Link href='/plan'>Change</Link></button>
                         </div>
-                        <p className='font-bold text-[#02295A] text-base'>${yearly? displayedYearlyPrice : displayedMonthyPrice}/yr</p>
+                        {
+                            yearly ? <p className='font-bold text-[#02295A] text-base'>{displayedYearlyPrice}/yr</p>
+                                : <p className='font-bold text-[#02295A] text-base'>{displayedMonthyPrice}/mo</p>
+                        }
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
                         {online &&
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Online service</p>
-                                <p className='text-[#02295A] text-base'>+${online ? 1 : ""}/yr</p>
+                                {
+                                    yearly ? <p className='text-[#02295A] text-base'>+${10}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${1}/mo</p>
+                                }
                             </div>
                         }
                         {largerStorage &&
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Larger storage</p>
-                                <p className='text-[#02295A] text-base'>+S{largerStorage ? 2 : ""}/mo</p>
+                                {
+                                    yearly ? <p className='text-[#02295A] text-base'>+${20}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${2}/mo</p>
+                                }
                             </div>
                         }
                         {customizable &&
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Customizable</p>
-                                <p className='text-[#02295A] text-base'>+${customizable ? 2 : ""}/yr</p>
+                                {
+                                    yearly ? <p className='text-[#02295A] text-base'>+${20}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${2}/mo</p>
+                                }
                             </div>
                         }
                     </div>
@@ -52,7 +93,9 @@ const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced 
 
                 <div className='p-5 flex justify-between items-center'>
                     <p className='text-[#9699AB] text-base'>Total (per year)</p>
-                    <p className='font-bold text-[#473DFF]'>+$160/yr</p>
+                    {yearly ? <p className='font-bold text-[#473DFF]'>+${customerTotalPrice}/yr</p>
+                        : <p className='font-bold text-[#473DFF]'>+${customerTotalPrice}/mo</p>
+                    }
                 </div>
 
 
