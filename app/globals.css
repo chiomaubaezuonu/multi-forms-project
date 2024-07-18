@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+ 
+body{
+    font-family: "Ubuntu", sans-serif;
+}
 @media(max-width: 600px) {
     .rootLayout__children {
         background-color: purple;

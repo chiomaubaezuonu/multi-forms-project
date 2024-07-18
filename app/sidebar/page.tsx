@@ -62,7 +62,7 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] mr-4 md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[264px] h-[172px] md:h-[538px] md:rounded-xl">
+      <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] mr-4 md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[254px] h-[172px] md:h-[538px] md:rounded-xl">
         <div className="flex justify-center gap-4 py-5 relative p-8 pt-12 md:flex-col z-20 md:gap-6">
           {/* <div className="flex justify-center gap-4 py-5 z-5 md:hidden"> */}
 

@@ -19,10 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-[#f0f6ff] relative flex flex-col items-center px-2 py-8 md:py-8">
-          <main className="p-5 md:rounded-xl md:bg-white md:shadow-3xl w-full flex flex-col md:items-center md:h-[560px] md:w-[860px]  gap-16 md:flex-row md:p-4">
-            {/* <div className="flex flex-col md:items-center gap-16 md:flex-row bg-red-500"> */}
-              {/* <section class="md:min-h-fit md:bg-white md:rounded-xl md:p-4 h-full md:h-[560px] md:w-[860px] md:shadow-3xl grid grid-rows-4 md:grid-rows-1 md:grid-cols-3" */}
+        <div className="bg-[#f0f6ff] relative flex flex-col items-center px-2 py-8 md:py-12 min-h[633px] md: h-auto">
+          <main className="p-5 md:rounded-xl md:bg-white md:shadow-3xl flex flex-col md:items-center md:justify-center md:h-[560px] md:w-[860px] gap-10 md:flex-row md:p-4 md:min-h-fit">
               <Sidebar />
               <GlobalContextProvider>
                 {children}
