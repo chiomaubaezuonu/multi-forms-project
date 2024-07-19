@@ -59,11 +59,12 @@ const Sidebar = () => {
   const [links, setLinks] = useState<Sidebarlinks>()
   const [activePage, setActivepage] = useState()
 
-
+  // [355px] ml-10 md:ml-0
   return (
     <div>
-      <div className="sidebar bg-[url('/images/bg-sidebar-mobile.svg')] mr-4 md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[254px] h-[172px] md:h-[538px] md:rounded-xl">
-        <div className="flex justify-center gap-4 py-5 relative p-8 pt-12 md:flex-col z-20 md:gap-6">
+      <div className="sidebar absolute md:relative md:top-0 bg-[url('/images/bg-sidebar-mobile.svg')] top-0 left-0 md:mr-4 md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[254px] h-[192px] md:h-[538px] md:rounded-xl">
+        {/* <div className="sidebar absolute md:relative top-0 left-0 right-0 md:-bottom-24 md:-left-5 md:right-24 bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] bg-cover w-full md:w-[254px] h-48 md:h-[538px] md:rounded-xl"> */}
+        <div className="flex justify-center gap-4 py-5 p-8 pt-12 md:flex-col z-20 md:gap-6">
           {/* <div className="flex justify-center gap-4 py-5 z-5 md:hidden"> */}
 
           {/* //test out */}

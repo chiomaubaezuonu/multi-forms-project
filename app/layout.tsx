@@ -18,13 +18,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="bg-[#f0f6ff] relative flex flex-col items-center px-2 py-8 md:py-12 min-h[633px] md: h-auto">
-          <main className="p-5 md:rounded-xl md:bg-white md:shadow-3xl flex flex-col md:items-center md:justify-center md:h-[560px] md:w-[860px] gap-10 md:flex-row md:p-4 md:min-h-fit">
-              <Sidebar />
-              <GlobalContextProvider>
-                {children}
-              </GlobalContextProvider>
+      <body className="bg-[#f0f6ff]">
+        <div className="bg-[#f0f6ff] flex flex-col items-center px-2 py-0 md:py-12 h-screen md:min-h[633px] md:h-auto">
+          <main className=" md:rounded-xl relative md:bg-white md:shadow-3xl flex flex-col md:items-center md:justify-center md:h-[560px] w-full md:w-[860px] gap-10 md:flex-row md:p-4 md:min-h-fit">
+            {/* <div className="bg-[#f0f6ff] flex flex-col items-center px-2 py-8 md:py-12 h-screen md:min-h[633px] md:h-auto"> */}
+            {/* <main className="md:rounded-xl relative md:bg-white md:shadow-3xl flex flex-col md:items-center md:justify-center md:h-[560px] w-full md:w-[860px] gap-10 md:flex-row md:p-4 md:min-h-fit"> */}
+            <Sidebar />
+            <GlobalContextProvider>
+              {children}
+            </GlobalContextProvider>
             {/* </div> */}
           </main>
         </div>

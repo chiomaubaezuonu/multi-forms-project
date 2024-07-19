@@ -1,18 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-body{
-        font-family: "Ubuntu", sans-serif;
+
+body {
+    font-family: "Ubuntu", sans-serif;
 }
 
-   .add-ons{
+.add-ons {
     border: 0.063rem solid #d6e9e6;
     cursor: pointer;
-   }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        background-position-y: 0;
+    }
+}
 
 
 
-   /* 1px = 0.063rem */
+/* 1px = 0.063rem */
