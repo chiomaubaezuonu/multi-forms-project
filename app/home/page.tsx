@@ -26,17 +26,17 @@ export default function Home() {
           <div className="grid">
             <label htmlFor="Name" className="text-[#02295A] text-sm font-medium tracking-tight">Names
             </label>
-            <input className="mt-[.5rem] border-[1px] font-bold text-sm border-[#d7d6e6] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. Stephen King" required />
+            <input className="mt-[.5rem] border-[0.063rem] font-bold text-sm border-[#d7d6e6] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. Stephen King" required />
           </div>
           <div className="grid">
             <label htmlFor="Name" className="text-[#02295A] text-sm font-medium tracking-tight">Email Address
             </label>
-            <input className="mt-[.5rem] border-[1px] font-bold border-[#d7d6e6] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. stephenking@lorem.com" required />
+            <input className="mt-[.5rem] border-[0.063rem] font-bold border-[#d7d6e6] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. stephenking@lorem.com" required />
           </div>
           <div className="grid">
             <label htmlFor="Name" className="text-[#02295A] text-sm font-medium tracking-tight">Phone Number
             </label>
-            <input className="mt-[.5rem] border-[1px] font-bold border-[#554cd3] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. +1 234 567 890" required />
+            <input className="mt-[.5rem] border-[0.063rem] font-bold border-[#554cd3] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. +1 234 567 890" required />
           </div>
           <div className="flex justify-between w-full z-20 mt-12 md:px-8">
             {/* <button className="">Go Back</button> */}
