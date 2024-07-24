@@ -38,12 +38,11 @@ export default function Home() {
             </label>
             <input className="mt-[.5rem] border-[0.063rem] font-bold border-[#554cd3] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. +1 234 567 890" required />
           </div>
-          <div className="flex justify-between w-full z-20 mt-12 md:px-8">
-            {/* <button className="">Go Back</button> */}
-            <button className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-              <Link href="/plan">Next Step</Link>
-            </button>
-          </div>
+          <Link href="/plan">
+            <div className="flex justify-between w-full z-20 mt-12 md:px-8">
+              <p className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</p>
+            </div>
+          </Link>
         </form>
       </div>
     </div>

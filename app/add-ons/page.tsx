@@ -58,12 +58,12 @@ const Add_ons = () => {
                         }
                     </label>
                 </div>
-                <div className="flex justify-between md:mt-20">
-                    <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/plan">Go Back</Link></button>
-                    <button className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-                        <Link href="/summary">Next Step</Link>
-                    </button>
-                </div>
+                <Link href="/summary">
+                    <div className="flex justify-between md:mt-20">
+                        <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
+                        <p className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</p>
+                    </div>
+                </Link>
             </div>
             {/* </div> */}
         </div>

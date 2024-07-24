@@ -98,16 +98,14 @@ const Summary = () => {
                     }
                 </div>
 
-
-
-
-
-                <div className="flex justify-between mt-20">
-                    <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/plan">Go Back</Link></button>
-                    <button className="bg-[#473dff] py-2.5 px-7 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-                        <Link href="/appreciation">Confirm</Link>
-                    </button>
-                </div>
+                <Link href="/appreciation">
+                    <div className="flex justify-between md:mt-20">
+                        <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
+                        <p className="bg-[#473dff] py-2.5 px-7 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
+                            Confirm
+                        </p>
+                    </div>
+                </Link>
             </div>
         </div>
     )

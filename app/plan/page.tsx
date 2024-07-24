@@ -124,13 +124,12 @@ const Plan = () => {
                     <Switch className='bg-[#02295A]' defaultChecked={toggleOn} onChange={onChange} />
                     <p className='font-bold text-[#9699ab] text-base duration-200'>Yearly</p>
                 </div>
-                {/* </div> */}
-                <div className="flex justify-between md:mt-20">
-                    <button className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]"><Link href="/">Go Back</Link></button>
-                    <button className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
-                        <Link href="/add-ons">Next Step</Link>
-                    </button>
-                </div>
+                <Link href="/add-ons">
+                    <div className="flex justify-between md:mt-20">
+                        <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
+                        <p className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</p>
+                    </div>
+                </Link>
             </div>
 
         </div >
