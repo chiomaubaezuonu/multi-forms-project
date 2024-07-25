@@ -118,18 +118,19 @@ const Plan = () => {
 
                     {/*  */}
                 </div>
-                {/* <div className='py-4 rounded-xl bg-[#FAFBFF] mt-2 md:col-span-3'> */}
                 <div className='flex gap-6 py-3 items-center bg-[#FAFBFF] md:mb-12 justify-center mt-8 rounded-xl '>
                     <p className='text-primary-100 font-bold duration-200'>Monthly</p>
                     <Switch className='bg-[#02295A]' defaultChecked={toggleOn} onChange={onChange} />
                     <p className='font-bold text-[#9699ab] text-base duration-200'>Yearly</p>
                 </div>
-                <Link href="/add-ons">
-                    <div className="flex justify-between md:mt-20">
-                        <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
-                        <p className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</p>
-                    </div>
-                </Link>
+
+                <div className="flex justify-between items-center md:mt-20">
+                    <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
+                    <Link href="/add-ons" className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
+                        Next Step
+                    </Link>
+                </div>
+
             </div>
 
         </div >

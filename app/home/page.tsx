@@ -4,7 +4,6 @@ import bgDesktop from "../public/images/bgDesktop.svg"
 import "../App.css"
 import Link from "next/link";
 import { useState } from "react";
-// import Sidebar from "./sidebar/page";
 
 
 
@@ -22,7 +21,6 @@ export default function Home() {
         </div>
 
         <form className="grid gap-4">
-          {/* <div className="grid"> */}
           <div className="grid">
             <label htmlFor="Name" className="text-[#02295A] text-sm font-medium tracking-tight">Names
             </label>
@@ -40,7 +38,7 @@ export default function Home() {
           </div>
           <Link href="/plan">
             <div className="flex justify-between w-full z-20 mt-12 md:px-8">
-              <p className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</p>
+              <span className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</span>
             </div>
           </Link>
         </form>
