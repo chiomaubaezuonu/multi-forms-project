@@ -4,6 +4,7 @@ import bgDesktop from "../public/images/bgDesktop.svg"
 import "../App.css"
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 
 
@@ -11,7 +12,12 @@ import { useState } from "react";
 export default function Home() {
 
   const [isPlanPageActive, setIsPlanPageActive] = useState(false);
+  const router = useRouter();
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    router.push('/plan')
+  }
   return (
     <div className="flex flex-col md:mt-0 bg-yellow z-20 absolute md:relative top-40 md:top-0">
       <div className="flex flex-col px-6 w-11/12 rounded-xl md:rounded-none md:px-8 mx-auto pt-4 pb-4 md:w-full bg-white">
@@ -20,7 +26,7 @@ export default function Home() {
           <p className="text-[#9699AB] text-base pr-16 md:mb-8 md:font-medium md:pr-4">Please provide your name, email address, and phone number.</p>
         </div>
 
-        <form className="grid gap-4">
+        <form className="grid gap-4" onSubmit={handleSubmit}>
           <div className="grid">
             <label htmlFor="Name" className="text-[#02295A] text-sm font-medium tracking-tight">Names
             </label>
@@ -36,11 +42,13 @@ export default function Home() {
             </label>
             <input className="mt-[.5rem] border-[0.063rem] font-bold border-[#554cd3] text-[#02295a] w-[15rem] md:w-[26.5rem] h-[2.625rem] py-2 px-3 rounded-lg placeholder:font-medium placeholder:text-[#9699ab] focus-visible:outline-none focus-visible:border-[#473dff]" type="text" placeholder="e.g. +1 234 567 890" required />
           </div>
-          <Link href="/plan">
-            <div className="flex justify-between w-full z-20 mt-12 md:px-8">
-              <span className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">Next Step</span>
-            </div>
-          </Link>
+          <div className="flex justify-between w-full z-20 mt-12 md:px-8">
+            <button type="submit" className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
+              Next Step
+            </button>
+
+          </div>
+
         </form>
       </div>
     </div>
