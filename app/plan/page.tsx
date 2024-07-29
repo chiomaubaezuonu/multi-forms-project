@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import arcade from "/images/arcade.svg"
 import Image from 'next/image'
 import { Switch } from 'antd';
@@ -73,18 +73,27 @@ const Plan = () => {
             }
         } else if (index === 1) {
             setMonthlyAdvanced(true)
+            setMonthlyArcade(false)
             if (yearly) {
                 setYearlyAdvanced(true)
+                setYearlyArcade(false)
             }
         }
         else {
             setMonthlyPro(true)
+            setMonthlyArcade(false)
+            setMonthlyAdvanced(false)
             if (yearly) {
                 setYearlyPro(true)
+                setYearlyAdvanced(false)
+                setYearlyAdvanced(false)
             }
         }
-    }
 
+    }
+    useEffect(() => {
+        console.log(clickedPlan)
+    }, [clickedPlan])
 
 
     return (

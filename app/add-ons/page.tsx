@@ -55,7 +55,7 @@ const Add_ons = () => {
                 </div>
 
                 <div className="flex justify-between md:mt-20 items-center">
-                    <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
+                    <Link href="/plan" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
                     <Link href="/summary" className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
                         Next Step
                     </Link>
