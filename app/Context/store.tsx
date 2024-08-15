@@ -36,7 +36,7 @@ const GlobalContext = createContext<ContextProps>({
     yearlyAdvanced: false,
     yearlyPro: false,
     yearly: false,
-    setYearly: () => { },
+    setYearly: () => { },   
     setOnline: () => { },
     setLargerStorage: () => { },
     setCustomizable: () => { },

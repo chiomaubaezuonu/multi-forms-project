@@ -1,33 +1,36 @@
 "use client"
 import Link from 'next/link'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
 
-    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
-    let onlineMonthly = 1;
-    let monthlyLargerStorage = 2;
-    let monthlyCustomizable = 2;
-    let yearlyOnline = 10;
-    let yearlyLargerStorage = 20;
-    let yearlyCustomizable = 20
-
-    const displayedMonthyPrice: number = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : 0))
+    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
+    const [selectedAddonPrice, setSelectedAddOnPrice] = useState({
+        onlineMonthly: 1,
+        monthlyLargerStorage: 2,
+        monthlyCustomizable: 2,
+        yearlyOnline: 10,
+        yearlyLargerStorage: 20,
+        yearlyCustomizable: 20
+    })
+    const [selectedMonthly, setSelectedMonthly] = useState(0)
+    const [selectedYearly, setSelectedYearly] = useState(0)
+    const displayedMonthlyPrice: number = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : 0))
     const displayedYearlyPrice: number = yearlyArcade ? 90 : (yearlyAdvanced ? 120 : (yearlyPro ? 150 : 0))
     const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : ""))
     const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced ? "Advanced (Yearly)" : (yearlyPro ? "Pro (Yearly)" : ""))
-    const selectedPlanPrice: number = yearly ? displayedYearlyPrice : displayedMonthyPrice
-    const MonthlyServicePrice: number = !yearly && online ? onlineMonthly : (!yearly && largerStorage ? monthlyLargerStorage : (!yearly && customizable ? monthlyCustomizable : 0))
-    const YearlyServicePrice: number = yearly && online ? yearlyOnline : (yearly && largerStorage ? yearlyLargerStorage : (yearly && customizable ? yearlyCustomizable : 0))
+    const selectedPlanPrice: number = yearly ? displayedYearlyPrice : displayedMonthlyPrice
+    const MonthlyServicePrice: number = !yearly && online ? selectedAddonPrice.onlineMonthly : (!yearly && largerStorage ? selectedAddonPrice.monthlyLargerStorage : (!yearly && customizable ? selectedAddonPrice.monthlyCustomizable : 0))
+    const YearlyServicePrice: number = yearly && online ? selectedAddonPrice.yearlyOnline : (yearly && largerStorage ? selectedAddonPrice.yearlyLargerStorage : (yearly && customizable ? selectedAddonPrice.yearlyCustomizable : 0))
     const totalYearlyServicePrice: number = yearly && online
-        ? yearlyOnline
-        + (largerStorage ? yearlyLargerStorage : 0)
-        + (customizable ? yearlyCustomizable : 0)
+        ? selectedAddonPrice.yearlyOnline
+        + (largerStorage ? selectedAddonPrice.yearlyLargerStorage : 0)
+        + (customizable ? selectedAddonPrice.yearlyCustomizable : 0)
         : 0;
-    const totalMonthlyServicePrice = !yearly && online ? onlineMonthly
-        + (largerStorage ? monthlyLargerStorage : 0)
-        + (customizable ? monthlyCustomizable : 0)
+    const totalMonthlyServicePrice = !yearly && online ? selectedAddonPrice.onlineMonthly
+        + (largerStorage ? selectedAddonPrice.monthlyLargerStorage : 0)
+        + (customizable ? selectedAddonPrice.monthlyCustomizable : 0)
         : 0
 
     let customerTotalPrice;
@@ -41,8 +44,14 @@ const Summary = () => {
     }
     if (selectedPlanPrice && totalMonthlyServicePrice) {
         customerTotalPrice = selectedPlanPrice + totalMonthlyServicePrice
-        console.log(displayedMonthyPrice)
+        // console.log(displayedMonthyPrice)
     }
+
+
+
+
+
+
     return (
         <div className="rounded-lg shadow-lg md:shadow-none -ml-2 z-20 flex-1 absolute md:relative top-40 md:top-0 p-1">
             <div className="flex flex-col px-6 w-11/12 rounded-xl md:rounded-none md:px-8  mx-auto pt-4 pb-4 md:w-full bg-red-white">
@@ -57,8 +66,8 @@ const Summary = () => {
                             <Link href='/plan' className='text-[#9699AB] text-base cursor-pointer underline hover:text-[#473DFF]'>Change</Link>
                         </div>
                         {
-                            yearly ? <p className='font-bold text-[#02295A] text-base'>{displayedYearlyPrice}/yr</p>
-                                : <p className='font-bold text-[#02295A] text-base'>{displayedMonthyPrice}/mo</p>
+                            yearly ? <p className='font-bold text-[#02295A] text-base'>{selectedYearly}/yr</p>
+                                : <p className='font-bold text-[#02295A] text-base'>{selectedMonthly}/mo</p>
                         }
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
@@ -66,8 +75,8 @@ const Summary = () => {
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Online service</p>
                                 {
-                                    yearly ? <p className='text-[#02295A] text-base'>+${10}/yr</p>
-                                        : <p className='text-[#02295A] text-base'>+${1}/mo</p>
+                                    yearly ? <p className='text-[#02295A] text-base'>+${selectedAddonPrice.yearlyOnline}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${selectedAddonPrice.onlineMonthly}/mo</p>
                                 }
                             </div>
                         }
@@ -75,8 +84,8 @@ const Summary = () => {
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Larger storage</p>
                                 {
-                                    yearly ? <p className='text-[#02295A] text-base'>+${20}/yr</p>
-                                        : <p className='text-[#02295A] text-base'>+${2}/mo</p>
+                                    yearly ? <p className='text-[#02295A] text-base'>+${selectedAddonPrice.yearlyLargerStorage}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${selectedAddonPrice.monthlyLargerStorage}/mo</p>
                                 }
                             </div>
                         }
@@ -94,9 +103,7 @@ const Summary = () => {
 
                 <div className='p-5 flex justify-between items-center'>
                     <p className='text-[#9699AB] text-base'>{yearly ? "Total (per year)" : "Total (per month)"}</p>
-                    {yearly ? <p className='font-bold text-[#473DFF] text-lg'>+${customerTotalPrice}/yr</p>
-                        : <p className='font-bold text-[#473DFF] text-lg'>+${customerTotalPrice}/mo</p>
-                    }
+                    <p className='font-bold text-[#473DFF] text-lg'>+${customerTotalPrice}{yearly ? '/yr' : '/mo'}</p>
                 </div>
                 <div className="flex justify-between items-center md:mt-20">
                     <Link href="/add-ons" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>

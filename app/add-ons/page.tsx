@@ -7,11 +7,22 @@ import { useGlobalContext } from '../Context/store';
 
 const Add_ons = () => {
     const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, yearly, setYearly } = useGlobalContext();
-
-    const handleCheckedBox = (e: any) => {
-        const checked = e.target.value
-        console.log(checked)
-    }
+    const [selectedAddon, setSelectedAddOn] = useState({
+        online: false,
+        largerStorage: false,
+        customizable: false
+    })
+   
+    useEffect(() => {
+        const storedServices = localStorage.getItem('selectedServices');
+        if (storedServices) {
+          setSelectedAddOn(JSON.parse(storedServices));
+        }
+      }, []);
+    
+      const handleAddons = () => {
+        localStorage.setItem('selectedServices', JSON.stringify(selectedAddon));
+      };
 
 
     return (
@@ -23,7 +34,7 @@ const Add_ons = () => {
                 </div>
                 <div className='grid gap-4'>
                     <label className='add-ons hover:border-[#473dff] flex gap-4 py-4 px-4 text-sm duration-200  rounded-lg  items-center' htmlFor="online">
-                        <input type="checkbox" onChange={(changeEvent) => setOnline(changeEvent.target.checked)} id='online' checked={online} />
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddOn({...selectedAddon, online:changeEvent.target.checked})} id='online' checked={selectedAddon.online} />
                         <div>
                             <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
                             <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
@@ -33,7 +44,7 @@ const Add_ons = () => {
                         }
                     </label>
                     <label className='add-ons hover:border-[#473dff] flex gap-4 py-4 px-4 text-sm duration-200 rounded-lg items-center' htmlFor="largerStorage">
-                        <input type="checkbox" onChange={(changeEvent) => setLargerStorage(changeEvent.target.checked)} id='largerStorage' checked={largerStorage} value='Larger Storage' />
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddOn({...selectedAddon, largerStorage:changeEvent.target.checked})} id='largerStorage' checked={selectedAddon.largerStorage} value='Larger Storage' />
                         <div className=''>
                             <p className="font-bold text-primary-100">Larger storage</p>
                             <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
@@ -43,7 +54,7 @@ const Add_ons = () => {
                         }
                     </label>
                     <label className='add-ons hover:border-[#473dff] rounded-lg flex gap-4 py-4 px-4 text-sm duration-200 items-center' htmlFor="customizable">
-                        <input type="checkbox" onChange={(changeEvent) => setCustomizable(changeEvent.target.checked)} id='customizable' checked={customizable} />
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddOn({...selectedAddon, customizable: changeEvent.target.checked})} id='customizable' checked={selectedAddon  .customizable} />
                         <div>
                             <p className="font-bold text-primary-100">Customizable Profile</p>
                             <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
@@ -56,7 +67,7 @@ const Add_ons = () => {
 
                 <div className="flex justify-between md:mt-20 items-center">
                     <Link href="/plan" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
-                    <Link href="/summary" className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
+                    <Link href="/summary" onClick={handleAddons} className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
                         Next Step
                     </Link>
                 </div>

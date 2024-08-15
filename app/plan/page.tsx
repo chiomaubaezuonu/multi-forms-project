@@ -64,6 +64,19 @@ const Plan = () => {
             setYearly(false)
         }
     };
+
+// useEffect(() => {
+//     const storedtoggle = localStorage.getItem('yearly')
+//     console.log(storedtoggle)
+//     if(storedtoggle !== null){
+//         setYearly(JSON.parse(storedtoggle))
+//     }  
+// },[])
+
+//     useEffect(() => {
+//             localStorage.setItem('yearly', JSON.stringify(yearly))
+//     },[yearly])
+    
     const handlePlan = (index: number) => {
         setClickedPlan(index)
         if (index === 0) {
@@ -91,10 +104,22 @@ const Plan = () => {
         }
 
     }
-    useEffect(() => {
-        console.log(clickedPlan)
-    }, [clickedPlan])
 
+    useEffect(() => {
+        const storedPlan = localStorage.getItem('myData')
+        if (storedPlan) {
+            setClickedPlan(JSON.parse(storedPlan))
+        }
+
+    }, [])
+    const handleNextPage = () => {
+        if (clickedPlan !== null) {
+            localStorage.setItem('myData', JSON.stringify(clickedPlan))
+        }
+        else {
+            console.error("Please select a plan")
+        }
+    }
 
     return (
         <div className="flex flex-col md:mt-0 bg-yellow z-20 absolute md:relative flex-1 top-40 md:top-0">
@@ -135,7 +160,7 @@ const Plan = () => {
 
                 <div className="flex justify-between items-center md:mt-20">
                     <Link href="/" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
-                    <Link href="/add-ons" className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
+                    <Link href="/add-ons" onClick={handleNextPage} className="bg-[#02295A] py-[0.625rem] px-7  hover:bg-[#473DFF] hover:opacity-75 rounded-lg text-white ml-auto duration-[.15s] cursor-pointer">
                         Next Step
                     </Link>
                 </div>
