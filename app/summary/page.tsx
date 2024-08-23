@@ -5,8 +5,8 @@ import { useGlobalContext } from '../Context/store';
 
 const Summary = () => {
 
-    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
-    const [selectedAddonPrice, setSelectedAddOnPrice] = useState({
+    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro, yearly, setYearly } = useGlobalContext();
+    const [selectedAddonPrice, setSelectedAddonPrice] = useState({
         onlineMonthly: 1,
         monthlyLargerStorage: 2,
         monthlyCustomizable: 2,
@@ -14,9 +14,15 @@ const Summary = () => {
         yearlyLargerStorage: 20,
         yearlyCustomizable: 20
     })
-    const [selectedMonthly, setSelectedMonthly] = useState(0)
+    // const onlineMonthly = 1
+    // const monthlyLargerStorage = 2
+    // const monthlyCustomizable = 2
+    // const yearlyOnline = 10
+    // const yearlyLargerStorage = 20
+    // const yearlyCustomizable = 20
+    const [selectedMonthly, setSelectedMonthly] = useState()
     const [selectedYearly, setSelectedYearly] = useState(0)
-    const displayedMonthlyPrice: number = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : 0))
+    let displayedMonthlyPrice: number = monthlyArcade ? 9 : (monthlyAdvanced ? 12 : (monthlyPro ? 15 : 0))
     const displayedYearlyPrice: number = yearlyArcade ? 90 : (yearlyAdvanced ? 120 : (yearlyPro ? 150 : 0))
     const displayedMonthlyTitle = monthlyArcade ? "Arcade (Monthly)" : (monthlyAdvanced ? "Advanced (Monthly)" : (monthlyPro ? "Pro (Monthly)" : ""))
     const displayedYearlyTitle = yearlyArcade ? "Arcade (Yearly)" : (yearlyAdvanced ? "Advanced (Yearly)" : (yearlyPro ? "Pro (Yearly)" : ""))
@@ -48,9 +54,37 @@ const Summary = () => {
     }
 
 
+    useEffect(() => {
+        const storedData = localStorage.getItem('selectedAddonPrice');
+        if (storedData) {
+            try {
+                const parsedData = JSON.parse(storedData);
+                setSelectedAddonPrice(parsedData);
+            } catch (error) {
+                console.error('Error parsing stored data:', error);
+            }
+        }
+    }, []);
 
+    useEffect(() => {
+        localStorage.setItem('selectedAddonPrice', JSON.stringify({ selectedAddonPrice }))
+    }, [selectedAddonPrice])
 
+    useEffect(() => {
+        const storedPlanPrices = localStorage.getItem('planPrices')
+        if (storedPlanPrices) {
+            const parsedPrices = JSON.parse(storedPlanPrices)
+            console.log(parsedPrices)
+            setMonthlyArcade(parsedPrices.monthlyArcade)
+            setMonthlyAdvanced(parsedPrices.monthlyAdvanced)
+            setMonthlyPro(parsedPrices.monthlyPro)
+        }
+    }, [])
 
+    useEffect(() => {
+        localStorage.setItem('planPrices', JSON.stringify({ monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro }))
+    }, [monthlyArcade, monthlyAdvanced, monthlyPro, yearlyArcade, yearlyAdvanced, yearlyPro])
+    console.log(monthlyAdvanced)
 
     return (
         <div className="rounded-lg shadow-lg md:shadow-none -ml-2 z-20 flex-1 absolute md:relative top-40 md:top-0 p-1">
@@ -67,7 +101,7 @@ const Summary = () => {
                         </div>
                         {
                             yearly ? <p className='font-bold text-[#02295A] text-base'>{selectedYearly}/yr</p>
-                                : <p className='font-bold text-[#02295A] text-base'>{selectedMonthly}/mo</p>
+                                : <p className='font-bold text-[#02295A] text-base bg-yellow-300'>{displayedMonthlyPrice}/mo</p>
                         }
                     </div>
                     <div className='grid pt-4 border-t border-accent-200 gap-2'>
@@ -93,8 +127,8 @@ const Summary = () => {
                             <div className='flex justify-between items-center'>
                                 <p className='text-[#9699AB] text-base'>Customizable</p>
                                 {
-                                    yearly ? <p className='text-[#02295A] text-base'>+${20}/yr</p>
-                                        : <p className='text-[#02295A] text-base'>+${2}/mo</p>
+                                    yearly ? <p className='text-[#02295A] text-base'>+${selectedAddonPrice.yearlyCustomizable}/yr</p>
+                                        : <p className='text-[#02295A] text-base'>+${selectedAddonPrice.monthlyCustomizable}/mo</p>
                                 }
                             </div>
                         }

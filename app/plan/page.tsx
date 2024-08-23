@@ -50,9 +50,9 @@ const Plan = () => {
     const [toggleOn, setToggleOn] = useState(false)
     const [monthly, setMonthly] = useState<planData[]>()
     // const [yearly, setYearly] = useState(false)
-    const [border1, setBorder1] = useState(false)
-    const [border2, setBorder2] = useState(false)
-    const [border3, setBorder3] = useState(false)
+    // const [border1, setBorder1] = useState(false)
+    // const [border2, setBorder2] = useState(false)
+    // const [border3, setBorder3] = useState(false)
     const [clickedPlan, setClickedPlan] = useState(-1)
 
     const onChange = (checked: boolean) => {
@@ -65,17 +65,6 @@ const Plan = () => {
         }
     };
 
-// useEffect(() => {
-//     const storedtoggle = localStorage.getItem('yearly')
-//     console.log(storedtoggle)
-//     if(storedtoggle !== null){
-//         setYearly(JSON.parse(storedtoggle))
-//     }  
-// },[])
-
-//     useEffect(() => {
-//             localStorage.setItem('yearly', JSON.stringify(yearly))
-//     },[yearly])
     
     const handlePlan = (index: number) => {
         setClickedPlan(index)
@@ -120,7 +109,7 @@ const Plan = () => {
             console.error("Please select a plan")
         }
     }
-
+console.log(monthlyAdvanced)
     return (
         <div className="flex flex-col md:mt-0 bg-yellow z-20 absolute md:relative flex-1 top-40 md:top-0">
             <div className="flex flex-col px-6 w-11/12 rounded-xl md:rounded-none md:px-8 mx-auto pt-4 pb-4 md:w-full bg-white">
