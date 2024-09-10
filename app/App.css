@@ -10,10 +10,14 @@ body {
     font-family: "Ubuntu", sans-serif;
 }
 
-.add-ons {
+/* .add-ons {
     border: 0.063rem solid #d6e9e6;
     cursor: pointer;
-}
+} */
+
+.add-ons:hover {
+    border: 1px solid #473dff;
+} 
 
 @media (max-width: 600px) {
     .sidebar {

@@ -6,93 +6,50 @@ import { Switch } from 'antd';
 import Link from 'next/link';
 // import "./App.css"
 import "../App.css"
-import { useGlobalContext } from '../Context/store';
+import { SelectedPlanName, TenureType, useGlobalContext } from '../Context/store';
 
+
+
+export type PlanOption = {
+    image: string,
+    name: "Arcade" | "Advanced" | "Pro";
+    monthlyPrice: number,
+    yearlyPrice: number,
+    duration: string
+}
+const planOptions: PlanOption[] = [
+    {
+        image: "/images/arcade.svg",
+        name: "Arcade",
+        monthlyPrice: 9,
+        yearlyPrice: 90,
+        duration: "2 months free"
+
+    },
+    {
+        image: "/images/advanced.svg",
+        name: "Advanced",
+        monthlyPrice: 12,
+        yearlyPrice: 120,
+        duration: "2 months free"
+
+    },
+    {
+        image: "/images/pro.svg",
+        name: "Pro",
+        monthlyPrice: 15,
+        yearlyPrice: 150,
+        duration: "2 months free"
+
+    }
+]
 
 const Plan = () => {
-
-    type planData = {
-        image: string,
-        plan: string,
-        monthlyPrice: number,
-        yearlyPrice: number,
-        duration: string
-    }
-
-    const plans = [
-        {
-            image: "/images/arcade.svg",
-            plan: "Arcade",
-            monthlyPrice: 9,
-            yearlyPrice: 90,
-            duration: "2 months free"
-
-        },
-        {
-            image: "/images/advanced.svg",
-            plan: "Advanced",
-            monthlyPrice: 12,
-            yearlyPrice: 120,
-            duration: "2 months free"
-
-        },
-        {
-            image: "/images/pro.svg",
-            plan: "Pro",
-            monthlyPrice: 15,
-            yearlyPrice: 150,
-            duration: "2 months free"
-
-        }
-    ]
-
-    const { monthlyArcade, setMonthlyArcade, monthlyAdvanced, setMonthlyAdvanced, monthlyPro, setMonthlyPro, yearlyArcade, setYearlyArcade, yearlyAdvanced, setYearlyAdvanced, yearlyPro, setYearlyPro, yearly, setYearly } = useGlobalContext();
-    const [toggleOn, setToggleOn] = useState(false)
-    const [monthly, setMonthly] = useState<planData[]>()
-    // const [yearly, setYearly] = useState(false)
-    // const [border1, setBorder1] = useState(false)
-    // const [border2, setBorder2] = useState(false)
-    // const [border3, setBorder3] = useState(false)
+    const { selectedPlan, setSelectedPlan, tenure, setTenure } = useGlobalContext();
+    // const [toggleOn, setToggleOn] = useState(false)
+    // const [monthly, setMonthly] = useState<planData[]>()
     const [clickedPlan, setClickedPlan] = useState(-1)
-
-    const onChange = (checked: boolean) => {
-        setToggleOn(checked)
-        //  console.log(`switch to ${checked}`);
-        if (toggleOn === false) {
-            setYearly(true)
-        } else {
-            setYearly(false)
-        }
-    };
-
-    
-    const handlePlan = (index: number) => {
-        setClickedPlan(index)
-        if (index === 0) {
-            setMonthlyArcade(true)
-            if (yearly) {
-                setYearlyArcade(true)
-            }
-        } else if (index === 1) {
-            setMonthlyAdvanced(true)
-            setMonthlyArcade(false)
-            if (yearly) {
-                setYearlyAdvanced(true)
-                setYearlyArcade(false)
-            }
-        }
-        else {
-            setMonthlyPro(true)
-            setMonthlyArcade(false)
-            setMonthlyAdvanced(false)
-            if (yearly) {
-                setYearlyPro(true)
-                setYearlyAdvanced(false)
-                setYearlyAdvanced(false)
-            }
-        }
-
-    }
+    // const [yearly, setYearly] = useState(false)
 
     useEffect(() => {
         const storedPlan = localStorage.getItem('myData')
@@ -109,7 +66,30 @@ const Plan = () => {
             console.error("Please select a plan")
         }
     }
-console.log(monthlyAdvanced)
+
+    const toggleTenure = () => {
+        setTenure(tenure === "monthly" ? "yearly" : "monthly")
+    };
+    useEffect(() => {
+        const storedTenure = localStorage.getItem('tenure')
+        if (storedTenure) {
+            console.log("storedTenure", storedTenure)
+            try {
+                const parsedTenure = JSON.parse(storedTenure);
+                console.log("parsedTenure", parsedTenure)
+                setTenure(parsedTenure);
+            } catch (error) {
+                console.error('Error parsing stored tenure:', error);
+            }
+        }
+    }, [])
+    useEffect(() => {
+        if (tenure) {
+            localStorage.setItem('tenure', JSON.stringify(tenure))
+        }
+        console.log(tenure)
+    }, [tenure])
+
     return (
         <div className="flex flex-col md:mt-0 bg-yellow z-20 absolute md:relative flex-1 top-40 md:top-0">
             <div className="flex flex-col px-6 w-11/12 rounded-xl md:rounded-none md:px-8 mx-auto pt-4 pb-4 md:w-full bg-white">
@@ -119,19 +99,19 @@ console.log(monthlyAdvanced)
                 </div>
                 <div className='grid md:grid-cols-3  gap-4'>
                     {
-                        plans.map((plan, index) => (
-                            <div key={index} onClick={() => handlePlan(index)} className={`bg-[#473dff0d]  ${clickedPlan === index ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-[0.0623rem] text-sm rounded-lg w-full md:w-[8.166rem] border-[0.063] cursor-pointer flex md:flex-col px-[0.688rem] py-[1rem] gap-3 duration-200`}>
-                                <Image width={40} height={40} src={plan.image} alt='arcade' className='mb-4' />
-                                <p className='text-[#02295A] font-semibold text-base '>{plan.plan}</p>
+                        planOptions.map((option, index) => (
+                            <div key={index} onClick={() => setSelectedPlan(option.name)} className={`bg-[#473dff0d]  ${selectedPlan === option.name ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-[0.0623rem] text-sm rounded-lg w-full md:w-[8.166rem] border-[0.063] cursor-pointer flex md:flex-col px-[0.688rem] py-[1rem] gap-3 duration-200`}>
+                                <Image width={40} height={40} src={option.image} alt='arcade' className='mb-4' />
+                                <p className='text-[#02295A] font-semibold text-base '>{option.name}</p>
                                 <div className='mt-0'>
-                                    {yearly ?
+                                    {tenure === "yearly" ?
                                         <div>
-                                            <p className='text-sm text-[#9699ab] font-medium'>{plan.yearlyPrice}/yr</p>
-                                            <p className="text-[02295A] text-sm">{plan.duration}</p>
+                                            <p className='text-sm text-[#9699ab] font-medium'>{option.yearlyPrice}/yr</p>
+                                            <p className="text-[02295A] text-sm">{option.duration}</p>
                                         </div>
                                         :
                                         <div>
-                                            <p className='text-[#9699ab] font-medium text-sm'>{plan.monthlyPrice}/mo</p>
+                                            <p className='text-[#9699ab] font-medium text-sm'>{option.monthlyPrice}/mo</p>
                                         </div>
                                     }
                                 </div>
@@ -143,7 +123,7 @@ console.log(monthlyAdvanced)
                 </div>
                 <div className='flex gap-6 py-3 items-center bg-[#FAFBFF] md:mb-12 justify-center mt-8 rounded-xl '>
                     <p className='text-primary-100 font-bold duration-200'>Monthly</p>
-                    <Switch className='bg-[#02295A]' defaultChecked={toggleOn} onChange={onChange} />
+                    <Switch className='bg-[#02295A]' onChange={toggleTenure} checked={tenure === "yearly"} />
                     <p className='font-bold text-[#9699ab] text-base duration-200'>Yearly</p>
                 </div>
 
@@ -162,3 +142,21 @@ console.log(monthlyAdvanced)
 
 export default Plan
 
+
+// planOptions.map((option, index) => (
+//     <div key={index} onClick={() => setSelectedPlan({ plan: option.name })} className={`bg-[#473dff0d]  ${selectedPlan.plan === option.name ? 'border-[#473dff]' : 'border-[#d6d9e6]'} hover:border-[#473dff] border-[0.0623rem] text-sm rounded-lg w-full md:w-[8.166rem] border-[0.063] cursor-pointer flex md:flex-col px-[0.688rem] py-[1rem] gap-3 duration-200`}>
+//         <Image width={40} height={40} src={option.image} alt='arcade' className='mb-4' />
+//         <p className='text-[#02295A] font-semibold text-base '>{option.name}</p>
+//         <div className='mt-0'>
+//             {yearly ?
+//                 <div>
+//                     <p className='text-sm text-[#9699ab] font-medium'>{option.yearlyPrice}/yr</p>
+//                     <p className="text-[02295A] text-sm">{option.duration}</p>
+//                 </div>
+//                 :
+//                 <div>
+//                     <p className='text-[#9699ab] font-medium text-sm'>{option.monthlyPrice}/mo</p>
+//                 </div>
+//             }
+//         </div>
+//     </div>

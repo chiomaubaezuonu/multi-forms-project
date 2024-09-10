@@ -6,23 +6,22 @@ import { useGlobalContext } from '../Context/store';
 
 
 const Add_ons = () => {
-    const { online, setOnline, largerStorage, setLargerStorage, customizable, setCustomizable, yearly, setYearly } = useGlobalContext();
+    const { selectedAddon, setSelectedAddon, tenure, setTenure } = useGlobalContext();
 
     useEffect(() => {
         const storedServices = localStorage.getItem('selectedServices');
         if (storedServices) {
             const parsedStoredServices = JSON.parse(storedServices)
-            setOnline(parsedStoredServices.online);
-            setLargerStorage(parsedStoredServices.largerStorage)
-            setCustomizable(parsedStoredServices.customizable)
+            setSelectedAddon(parsedStoredServices);
+            // setSelectedAddon(parsedStoredServices.largerStorage)
+            // setSelectedAddon(parsedStoredServices.customizable)
         }
     }, []);
 
 
     const storeAddon = () => {
-        localStorage.setItem('selectedServices', JSON.stringify({ online, largerStorage, customizable }));
+        localStorage.setItem('selectedServices', JSON.stringify(selectedAddon));
     };
-
 
     return (
         <div className="rounded-lg shadow-lg md:shadow-none -ml-2 z-20 flex-1 absolute md:relative top-40 md:top-0 p-1">
@@ -32,34 +31,34 @@ const Add_ons = () => {
                     <p className="text-[#9699AB] text-base px-0 mb-4 md:px-0 pr-2 md:pr-4 tracking-tight md:mb-8 md:font-medium">Add-ons help enhance your gaming experience.</p>
                 </div>
                 <div className='grid gap-4'>
-                    <label className='add-ons hover:border-[#473dff] flex gap-4 py-4 px-4 text-sm duration-200  rounded-lg  items-center' htmlFor="online">
-                        <input type="checkbox" onChange={(changeEvent) => setOnline(changeEvent.target.checked)} id='online' checked={online} />
+                    <label className={`add-ons ${selectedAddon.online ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} flex gap-4 py-4 px-4 text-sm duration-200  rounded-lg  items-center`} htmlFor="online">
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddon({ ...selectedAddon, online: changeEvent.target.checked })} id='online' checked={selectedAddon.online} />
                         <div>
                             <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
                             <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
                         </div>
                         {
-                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${10}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${1}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${10}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${1}/mo`}</p>
                         }
                     </label>
-                    <label className='add-ons hover:border-[#473dff] flex gap-4 py-4 px-4 text-sm duration-200 rounded-lg items-center' htmlFor="largerStorage">
-                        <input type="checkbox" onChange={(changeEvent) => setLargerStorage(changeEvent.target.checked)} id='largerStorage' checked={largerStorage} value='Larger Storage' />
+                    <label className={`add-ons ${selectedAddon.largerStorage ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} cursor-pointer  flex gap-4 py-4 px-4 text-sm duration-200 rounded-lg items-center`} htmlFor="largerStorage">
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddon({ ...selectedAddon, largerStorage: changeEvent.target.checked })} id='largerStorage' checked={selectedAddon.largerStorage} value='Larger Storage' />
                         <div className=''>
                             <p className="font-bold text-primary-100">Larger storage</p>
                             <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
                         </div>
                         {
-                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
                         }
                     </label>
-                    <label className='add-ons hover:border-[#473dff] rounded-lg flex gap-4 py-4 px-4 text-sm duration-200 items-center' htmlFor="customizable">
-                        <input type="checkbox" onChange={(changeEvent) => setCustomizable(changeEvent.target.checked)} id='customizable' checked={customizable} />
+                    <label className={`add-ons ${selectedAddon.customizable === true ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} cursor-pointer rounded-lg flex gap-4 py-4 px-4 text-sm duration-200 items-center`} htmlFor="customizable">
+                        <input type="checkbox" onChange={(changeEvent) => setSelectedAddon({ ...selectedAddon, customizable: changeEvent.target.checked })} id='customizable' checked={selectedAddon.customizable} />
                         <div>
                             <p className="font-bold text-primary-100">Customizable Profile</p>
                             <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
                         </div>
                         {
-                            yearly ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
                         }
                     </label>
                 </div>
