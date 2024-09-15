@@ -6,7 +6,7 @@ import { useGlobalContext } from '../Context/store';
 
 
 const Add_ons = () => {
-    const { selectedAddon, setSelectedAddon, tenure, setTenure } = useGlobalContext();
+    const { selectedAddon, setSelectedAddon, tenure } = useGlobalContext();
 
     useEffect(() => {
         const storedServices = localStorage.getItem('selectedServices');

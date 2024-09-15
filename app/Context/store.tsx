@@ -1,6 +1,11 @@
 "use client"
 import { createContext, useContext, Dispatch, SetStateAction, useState, FunctionComponent, ReactNode } from 'react';
 
+const storedTenure = typeof window !== "undefined" ? localStorage.getItem('tenure') as TenureType | null : null;
+
+
+const storedPlan = typeof window !== "undefined" ? localStorage.getItem('myData') : null
+const parsedPlan = storedPlan ? (JSON.parse(storedPlan)) : null
 
 interface UserDetailsType {
   name: string;
@@ -8,8 +13,8 @@ interface UserDetailsType {
   phone: string;
 }
 
-
 export type SelectedPlanName = "Arcade" | "Advanced" | "Pro";
+
 
 interface AddonType {
   online: boolean;
@@ -17,19 +22,6 @@ interface AddonType {
   customizable: boolean
 }
 
-// export type PlanOption = {
-//   image: string,
-//   name: "Arcade" | "Advanced" | "Pro";
-//   monthlyPrice: number,
-//   yearlyPrice: number,
-//   duration: string
-// }
-
-//  export type SelectedPlanName =  "Arcade" | "Advanced" | "Pro";
-
-// interface SelectedPlanType {
-//   name: SelectedPlanName
-// }
 
 export type TenureType = "monthly" | "yearly"
 
@@ -37,11 +29,7 @@ export type TenureType = "monthly" | "yearly"
 interface ContextProps {
   userDetails: UserDetailsType,
   setUserDetails: (newUserDetails: UserDetailsType) => void,
-  // selectedPlan: SelectedPlanType,
-  // setSelectedPlan: (newSelectedPlan: SelectedPlanType) => void,
   tenure: TenureType,
-  // selectedPlan: PlanOption,
-  // setSelectedPlan: (newSelectedPlan: PlanOption) => void,
   selectedAddon: AddonType,
   setSelectedAddon: (newSelectedAddon: AddonType) => void,
   selectedPlan: SelectedPlanName,
@@ -56,19 +44,13 @@ const GlobalContext = createContext<ContextProps>({
     phone: ""
   },
   selectedPlan: "Arcade",
-  // selectedPlan: {
-  //   image: '', // Replace with a default image
-  //   name: 'Arcade', // Default to "Arcade"
-  //   monthlyPrice: 0,
-  //   yearlyPrice: 0,
-  //   duration: '',
-  // },
   tenure: "monthly",
   selectedAddon: {
     online: false,
     largerStorage: false,
     customizable: false,
   },
+
   setUserDetails: () => { },
   setSelectedPlan: () => { },
   setTenure: () => { },
@@ -85,18 +67,10 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
   // const [selectedPlan, setSelectedPlan] = useState<SelectedPlanType>({
   //   plan: "Arcade"
   // });
-  // const [selectedPlan, setSelectedPlan] = useState<PlanOption>(
-  //   {
-  //     image: '',
-  //     name: 'Arcade',
-  //     monthlyPrice: 0,
-  //     yearlyPrice: 0,
-  //     duration: '',
-  //   }
-  // )
-  const [selectedPlan, setSelectedPlan] = useState<SelectedPlanName>("Arcade");
+  const [selectedPlan, setSelectedPlan] = useState<SelectedPlanName>(parsedPlan || "Arcade");
 
-  const [tenure, setTenure] = useState<TenureType>("monthly")
+
+  const [tenure, setTenure] = useState<TenureType>(storedTenure || "monthly")
   const [selectedAddon, setSelectedAddon] = useState<AddonType>({
     online: false,
     largerStorage: false,
@@ -110,7 +84,8 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
     tenure,
     setTenure,
     selectedAddon,
-    setSelectedAddon
+    setSelectedAddon,
+   
   };
 
   return (

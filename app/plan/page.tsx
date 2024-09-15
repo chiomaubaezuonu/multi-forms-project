@@ -6,9 +6,7 @@ import { Switch } from 'antd';
 import Link from 'next/link';
 // import "./App.css"
 import "../App.css"
-import { SelectedPlanName, TenureType, useGlobalContext } from '../Context/store';
-
-
+import { SelectedPlanName,  TenureType, useGlobalContext } from '../Context/store';
 
 export type PlanOption = {
     image: string,
@@ -45,50 +43,39 @@ const planOptions: PlanOption[] = [
 ]
 
 const Plan = () => {
-    const { selectedPlan, setSelectedPlan, tenure, setTenure } = useGlobalContext();
+    const { selectedPlan, setSelectedPlan, tenure, setTenure, } = useGlobalContext();
     // const [toggleOn, setToggleOn] = useState(false)
     // const [monthly, setMonthly] = useState<planData[]>()
     const [clickedPlan, setClickedPlan] = useState(-1)
     // const [yearly, setYearly] = useState(false)
 
-    useEffect(() => {
-        const storedPlan = localStorage.getItem('myData')
-        if (storedPlan) {
-            setClickedPlan(JSON.parse(storedPlan))
-        }
-
-    }, [])
+   
     const handleNextPage = () => {
-        if (clickedPlan !== null) {
-            localStorage.setItem('myData', JSON.stringify(clickedPlan))
+        if (selectedPlan) {
+            console.log({ selectedPlan })
+            localStorage.setItem('myData', JSON.stringify(selectedPlan))
         }
         else {
             console.error("Please select a plan")
         }
     }
+    console.log({ selectedPlan })
 
     const toggleTenure = () => {
+        console.log("conditional value", tenure === "monthly" ? "yearly" : "monthly")
         setTenure(tenure === "monthly" ? "yearly" : "monthly")
     };
-    useEffect(() => {
-        const storedTenure = localStorage.getItem('tenure')
-        if (storedTenure) {
-            console.log("storedTenure", storedTenure)
-            try {
-                const parsedTenure = JSON.parse(storedTenure);
-                console.log("parsedTenure", parsedTenure)
-                setTenure(parsedTenure);
-            } catch (error) {
-                console.error('Error parsing stored tenure:', error);
-            }
-        }
-    }, [])
+
+    console.log({ tenure })
+
     useEffect(() => {
         if (tenure) {
-            localStorage.setItem('tenure', JSON.stringify(tenure))
+            localStorage.setItem('tenure', tenure);
         }
-        console.log(tenure)
-    }, [tenure])
+        console.log("random")
+    }, [tenure]);
+
+
 
     return (
         <div className="flex flex-col md:mt-0 bg-yellow z-20 absolute md:relative flex-1 top-40 md:top-0">
@@ -135,7 +122,6 @@ const Plan = () => {
                 </div>
 
             </div>
-
         </div >
     )
 }
