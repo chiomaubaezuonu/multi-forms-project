@@ -2,27 +2,25 @@
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import "../App.css";
-import { useGlobalContext } from '../Context/store';
+import { useGlobalContext, selectedAddonPrice } from '../Context/store';
 
 
 const Add_ons = () => {
     const { selectedAddon, setSelectedAddon, tenure } = useGlobalContext();
 
-    useEffect(() => {
-        const storedServices = localStorage.getItem('selectedServices');
-        if (storedServices) {
-            const parsedStoredServices = JSON.parse(storedServices)
-            setSelectedAddon(parsedStoredServices);
-            // setSelectedAddon(parsedStoredServices.largerStorage)
-            // setSelectedAddon(parsedStoredServices.customizable)
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedServices = localStorage.getItem('selectedServices');
+    //     if (storedServices) {
+    //         const parsedStoredServices = JSON.parse(storedServices)
+    //         setSelectedAddon(parsedStoredServices);
+    //     }
+    // }, []);
 
 
     const storeAddon = () => {
         localStorage.setItem('selectedServices', JSON.stringify(selectedAddon));
     };
-
+    console.log({ selectedAddon }) // why is selectedAddon all true meanwhile it's false in summaryPage
     return (
         <div className="rounded-lg shadow-lg md:shadow-none -ml-2 z-20 flex-1 absolute md:relative top-40 md:top-0 p-1">
             <div className="flex flex-col px-6 w-11/12 rounded-xl md:rounded-none md:px-8  mx-auto pt-4 pb-4 md:w-full bg-white">
@@ -34,11 +32,12 @@ const Add_ons = () => {
                     <label className={`add-ons ${selectedAddon.online ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} flex gap-4 py-4 px-4 text-sm duration-200  rounded-lg  items-center`} htmlFor="online">
                         <input type="checkbox" onChange={(changeEvent) => setSelectedAddon({ ...selectedAddon, online: changeEvent.target.checked })} id='online' checked={selectedAddon.online} />
                         <div>
+
                             <p className='text-[#02295a] text-sm font-bold'>Online Service</p>
                             <p className='text-[#9699ab] text-sm'>Access to multiplayer</p>
                         </div>
                         {
-                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${10}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${1}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.onlineYearly}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.online}/mo`}</p>
                         }
                     </label>
                     <label className={`add-ons ${selectedAddon.largerStorage ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} cursor-pointer  flex gap-4 py-4 px-4 text-sm duration-200 rounded-lg items-center`} htmlFor="largerStorage">
@@ -48,7 +47,7 @@ const Add_ons = () => {
                             <p className="text-sm text-[#9699ab]">Extra 1TB of cloud save</p>
                         </div>
                         {
-                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.largerStorageYearly}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.largerStorage}/mo`}</p>
                         }
                     </label>
                     <label className={`add-ons ${selectedAddon.customizable === true ? 'border-[0.063rem] border-[#473dff]' : 'border-[0.063rem] border-[#d6e9e6]'} cursor-pointer rounded-lg flex gap-4 py-4 px-4 text-sm duration-200 items-center`} htmlFor="customizable">
@@ -58,7 +57,7 @@ const Add_ons = () => {
                             <p className="text-sm text-[#9699ab]">Custom theme on your profile</p>
                         </div>
                         {
-                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${20}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${2}/mo`}</p>
+                            tenure === "yearly" ? <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.customizableYearly}/yr`}</p> : <p className='ml-auto text-[#473DFF]'>{`+$${selectedAddonPrice.customizable}/mo`}</p>
                         }
                     </label>
                 </div>

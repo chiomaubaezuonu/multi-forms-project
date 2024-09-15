@@ -7,6 +7,11 @@ const storedTenure = typeof window !== "undefined" ? localStorage.getItem('tenur
 const storedPlan = typeof window !== "undefined" ? localStorage.getItem('myData') : null
 const parsedPlan = storedPlan ? (JSON.parse(storedPlan)) : null
 
+
+const storedServices = typeof window !== undefined ? localStorage.getItem('selectedServices') : null;
+const parsedStoredServices = storedServices ? JSON.parse(storedServices) : null
+
+
 interface UserDetailsType {
   name: string;
   email: string;
@@ -25,6 +30,14 @@ interface AddonType {
 
 export type TenureType = "monthly" | "yearly"
 
+export const selectedAddonPrice = {
+  online: 1,
+  largerStorage: 2,
+  customizable: 2,
+  onlineYearly: 10,
+  largerStorageYearly: 20,
+  customizableYearly: 20
+}
 
 interface ContextProps {
   userDetails: UserDetailsType,
@@ -71,11 +84,7 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
 
 
   const [tenure, setTenure] = useState<TenureType>(storedTenure || "monthly")
-  const [selectedAddon, setSelectedAddon] = useState<AddonType>({
-    online: false,
-    largerStorage: false,
-    customizable: false
-  })
+  const [selectedAddon, setSelectedAddon] = useState<AddonType>(parsedStoredServices)
   const contextValue = {
     userDetails,
     selectedPlan,
@@ -85,7 +94,7 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
     setTenure,
     selectedAddon,
     setSelectedAddon,
-   
+
   };
 
   return (
