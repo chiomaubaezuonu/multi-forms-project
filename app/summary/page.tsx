@@ -107,7 +107,7 @@ const Summary = () => {
 
                 <div className='p-5 flex justify-between items-center'>
                     <p className='text-[#9699AB] text-base'>{tenure === "yearly" ? "Total (per year)" : "Total (per month)"}</p>
-                    <p className='font-bold text-[#473DFF] text-lg'>+${calculateTotalPrice()}{tenure === "yearly" ? '/yr' : '/mo'}</p>
+                    <p className='font-bold text-[#473DFF] bg-red-500 text-lg'>+${calculateTotalPrice()}{tenure === "yearly" ? '/yr' : '/mo'}</p>
                 </div>
                 <div className="flex justify-between items-center md:mt-20">
                     <Link href="/add-ons" className="text-[#9699AB] text-base duration-200 hover:text-[#02295A]">Go Back</Link>
