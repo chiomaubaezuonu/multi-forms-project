@@ -8,7 +8,7 @@ const storedPlan = typeof window !== "undefined" ? localStorage.getItem('myData'
 const parsedPlan = storedPlan ? (JSON.parse(storedPlan)) : null
 
 
-const storedServices = typeof window !== undefined ? localStorage.getItem('selectedServices') : null;
+const storedServices = typeof window !== "undefined" ? localStorage.getItem('selectedServices') : null;
 const parsedStoredServices = storedServices ? JSON.parse(storedServices) : null
 
 
