@@ -6,7 +6,7 @@ import { Switch } from 'antd';
 import Link from 'next/link';
 // import "./App.css"
 import "../App.css"
-import { SelectedPlanName,  TenureType, useGlobalContext } from '../Context/store';
+import { SelectedPlanName, TenureType, useGlobalContext } from '../Context/store';
 
 export type PlanOption = {
     image: string,
@@ -44,35 +44,26 @@ const planOptions: PlanOption[] = [
 
 const Plan = () => {
     const { selectedPlan, setSelectedPlan, tenure, setTenure, } = useGlobalContext();
-    // const [toggleOn, setToggleOn] = useState(false)
-    // const [monthly, setMonthly] = useState<planData[]>()
-    const [clickedPlan, setClickedPlan] = useState(-1)
-    // const [yearly, setYearly] = useState(false)
 
-   
+
     const handleNextPage = () => {
         if (selectedPlan) {
-            console.log({ selectedPlan })
             localStorage.setItem('myData', JSON.stringify(selectedPlan))
         }
         else {
             console.error("Please select a plan")
         }
     }
-    console.log({ selectedPlan })
 
     const toggleTenure = () => {
         console.log("conditional value", tenure === "monthly" ? "yearly" : "monthly")
         setTenure(tenure === "monthly" ? "yearly" : "monthly")
     };
 
-    console.log({ tenure })
-
     useEffect(() => {
         if (tenure) {
             localStorage.setItem('tenure', tenure);
         }
-        console.log("random")
     }, [tenure]);
 
 
