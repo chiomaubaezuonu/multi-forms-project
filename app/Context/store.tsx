@@ -84,7 +84,7 @@ export const GlobalContextProvider: FunctionComponent<{ children: ReactNode }> =
 
 
   const [tenure, setTenure] = useState<TenureType>(storedTenure || "monthly")
-  const [selectedAddon, setSelectedAddon] = useState<AddonType>(parsedStoredServices)
+  const [selectedAddon, setSelectedAddon] = useState<AddonType>(parsedStoredServices || "online")
   const contextValue = {
     userDetails,
     selectedPlan,
